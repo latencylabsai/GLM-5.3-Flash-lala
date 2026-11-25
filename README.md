@@ -23,6 +23,13 @@ Use the same setup command on either supported machine.
 | Mac | M5 Max MacBook Pro, 128 GB RAM | macOS 26.2+, Apple Command Line Tools, Homebrew, Python 3.11+, and `uv` |
 | DGX Spark | One NVIDIA GB10, 128 GB unified memory | Python 3.12 with development headers and venv support, a C++ compiler, and CUDA 13.0 |
 
+On DGX Spark, the system image may not include the Python 3.12 development
+headers. If setup reports that they are missing, install them:
+
+~~~bash
+sudo apt install python3.12-dev python3.12-venv
+~~~
+
 Both platforms need git and space for the approximately 100 GB checkpoint.
 Mac also needs approximately 90 GB for the main repack and 3.8 GB for its MTP
 pack. Other Mac configurations are not yet qualified. Full Xcode is not
