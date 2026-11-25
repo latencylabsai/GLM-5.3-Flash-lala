@@ -1,0 +1,1184 @@
+{
+  "date": "2026-11-24",
+  "passed": true,
+  "backend": "mac",
+  "scope": "Fresh isolated runtime installation, anonymous public checkpoint download, generated-launcher serving, and 250K-input execution.",
+  "package_repository": "https://github.com/latencylabsai/GLM-5.3-Flash-lala",
+  "package_runtime_source_commit": "0d59ec35c25aa06ae2031324f006cc3e98fdd83c",
+  "package_delivery": "Repository snapshot copied to the host; anonymous GitHub clone was not tested.",
+  "setup_command": "bash scripts/setup.sh",
+  "fresh_install_directory": true,
+  "fresh_model_directory": true,
+  "fresh_hf_home": true,
+  "hf_authentication": {
+    "HF_TOKEN": "unset",
+    "HUGGING_FACE_HUB_TOKEN": "unset",
+    "HF_HUB_DISABLE_IMPLICIT_TOKEN": "1"
+  },
+  "existing_checkpoint_or_packs_reused": false,
+  "runtime_lock": {
+    "model": {
+      "repo": "latencylabs/GLM-5.3-Flash-lala",
+      "revision": "29443247d589703b8e1e0244ba8242bda3aee077",
+      "native_index_sha256": "a2d56f9a5fc64f019bd4592f3515df65ff925301a36e2b790fdc30b52e8bd18c",
+      "quantization_config_sha256": "25db52862b63ea18bac0eb444606726dc19a033ac1fa9d8c23dfcfd510728ee0"
+    },
+    "mac": {
+      "repo": "https://github.com/beamivalice/sushi.git",
+      "revision": "fc2fd843c2931f7cac150cdc86bb3873de273458",
+      "patch": "patches/sushi-lala.patch",
+      "zig": "0.17.1",
+      "mlx": "64ea011cb65f14d9ce2737e60db9a4ae91ed7441",
+      "mlx_c": "56b2d39fc831f2c0eb5bb94d82ef7191f7b31fa6",
+      "patch_source": "Public Sushi base plus Lala grouped verification and standalone native MTP",
+      "patch_sha256": "8bbe27a4ea3b4e1e904c0ca9329454addfd3a9b73ce0e2ee0d98487c79d8ba24",
+      "tested_binary_sha256": "54adfd9097c48fa35592659513d90114e71940f802eb7b4c62acc07bcd40472f",
+      "default_context_tokens": 262144,
+      "patched_tree": "a498817811294b2d3ce82df58a0fea143b15f633",
+      "long_context_tested_binary_sha256": "54adfd9097c48fa35592659513d90114e71940f802eb7b4c62acc07bcd40472f",
+      "dflash2_required": false,
+      "library_release": {
+        "version": "1.7.3",
+        "url": "https://github.com/beamivalice/sushi/releases/download/v1.7.3/sushi-bin-macos-arm64.tar.gz",
+        "sha256": "21cb50782f5dfcbc15e36019e320edf961cda63592bbbfb3a3a654f50fa5741a"
+      }
+    },
+    "spark": {
+      "engine": "ExLlamaV3",
+      "engine_version": "1.6.2",
+      "engine_repo": "https://github.com/turboderp-org/exllamav3.git",
+      "engine_revision": "058b8630fd081f3ff46fce6246955b157c3a2e3b",
+      "server": "TabbyAPI",
+      "server_repo": "https://github.com/theroyallab/tabbyAPI.git",
+      "server_revision": "cdea8acc4ccabe795863772e690d1357298cef74",
+      "torch": "2.13.0+cu130",
+      "triton": "3.7.1",
+      "status": "Pinned native runtime; validation results are tracked in docs/status.md",
+      "installation": "native Python environment and source-built CUDA extension",
+      "python": "3.12",
+      "cuda_toolkit": "13.0",
+      "cuda_arch": "12.1a",
+      "default_context_tokens": 262144,
+      "engine_patch": "patches/exllamav3-consistent-decode.patch",
+      "engine_patch_sha256": "aa3db0cfa9196cc637cff9d684956650f2dc18891a6dfbd2f14e2e4dbef749ed",
+      "consistent_decode_version": 1,
+      "recurrent_state_precision": "float32",
+      "kv_precision": "float16"
+    }
+  },
+  "download": {
+    "repo": "latencylabs/GLM-5.3-Flash-lala",
+    "revision": "29443247d589703b8e1e0244ba8242bda3aee077",
+    "metadata_only": false,
+    "verified_files": [
+      {
+        "file": "LICENSE",
+        "bytes": 1070,
+        "sha256": "30b85b6b9659f2e78aa259f8faf5d920a68dee7c9ced3fa6dba1f19f2bc4fca1",
+        "hf_hash": "986b06fb2916b3518b82c7dcc0870723b91f2f92",
+        "hf_hash_type": "git-blob-sha1"
+      },
+      {
+        "file": "README.md",
+        "bytes": 925,
+        "sha256": "500e2789b6c251c6a596cd52954e82c40516e843f8c4a8b88d33d186c0076c05",
+        "hf_hash": "c36e115cea3163ee87bd83192126fb54961beb4b",
+        "hf_hash_type": "git-blob-sha1"
+      },
+      {
+        "file": "chat_template.jinja",
+        "bytes": 10950,
+        "sha256": "0c4099f3382d6c92700dfb99725025360966fd73032f0ecf32377c0d9e6309c5",
+        "hf_hash": "06bd89e94b96652fd5d76d9f9e11cfa15e09f49d",
+        "hf_hash_type": "git-blob-sha1"
+      },
+      {
+        "file": "config.json",
+        "bytes": 7866,
+        "sha256": "62e0f9c818e9d431c666dbacfe65f830566e0f540e5adca2909d414148ea5399",
+        "hf_hash": "bbd1d6fc1861e5ea127c314b81a0fba6a9f263e6",
+        "hf_hash_type": "git-blob-sha1"
+      },
+      {
+        "file": "generation_config.json",
+        "bytes": 194,
+        "sha256": "230c30609ecbbb9e6583bedde8e7bdda0c6eb8fe5fad0eaeb3d1b293d751cb4f",
+        "hf_hash": "637ee6afa5c6ebfba4eb24bd5b9df68550143597",
+        "hf_hash_type": "git-blob-sha1"
+      },
+      {
+        "file": "model-00001-of-00014.safetensors",
+        "bytes": 6453343484,
+        "sha256": "e8ab0e3120784ce82eb0d5f1ade39f4043a5b405944d14504a0ed9a0a1bbea07",
+        "hf_hash": "e8ab0e3120784ce82eb0d5f1ade39f4043a5b405944d14504a0ed9a0a1bbea07",
+        "hf_hash_type": "sha256"
+      },
+      {
+        "file": "model-00002-of-00014.safetensors",
+        "bytes": 7133798646,
+        "sha256": "0ed4f054ab43913f20252be2e68d4926b18558676453397437771a8b35eb66cb",
+        "hf_hash": "0ed4f054ab43913f20252be2e68d4926b18558676453397437771a8b35eb66cb",
+        "hf_hash_type": "sha256"
+      },
+      {
+        "file": "model-00003-of-00014.safetensors",
+        "bytes": 7105161251,
+        "sha256": "c2ee6ac00d5b3c2b9a94875df96a9ce8659bfaea5f163a50ebbefcc3017f3caa",
+        "hf_hash": "c2ee6ac00d5b3c2b9a94875df96a9ce8659bfaea5f163a50ebbefcc3017f3caa",
+        "hf_hash_type": "sha256"
+      },
+      {
+        "file": "model-00004-of-00014.safetensors",
+        "bytes": 7133809151,
+        "sha256": "c8601636b010c5aabdeb9dfb5dd2a5ee55951b0ff5da1b3b144125a534491906",
+        "hf_hash": "c8601636b010c5aabdeb9dfb5dd2a5ee55951b0ff5da1b3b144125a534491906",
+        "hf_hash_type": "sha256"
+      },
+      {
+        "file": "model-00005-of-00014.safetensors",
+        "bytes": 7133809135,
+        "sha256": "9f605917943599f46b0eaea696f24de6791dc93c6e1b258cf45a30c63b50fdc0",
+        "hf_hash": "9f605917943599f46b0eaea696f24de6791dc93c6e1b258cf45a30c63b50fdc0",
+        "hf_hash_type": "sha256"
+      },
+      {
+        "file": "model-00006-of-00014.safetensors",
+        "bytes": 7133809151,
+        "sha256": "4435b20a225b8fff4e9a29c1c4ef48ea2c04a19b1d89738f202dd3494b51ce53",
+        "hf_hash": "4435b20a225b8fff4e9a29c1c4ef48ea2c04a19b1d89738f202dd3494b51ce53",
+        "hf_hash_type": "sha256"
+      },
+      {
+        "file": "model-00007-of-00014.safetensors",
+        "bytes": 7105168177,
+        "sha256": "c959c7c4c116788ddbf6f3a7656520bc08eb7b91855f7d43c68d2f2cfefd26e9",
+        "hf_hash": "c959c7c4c116788ddbf6f3a7656520bc08eb7b91855f7d43c68d2f2cfefd26e9",
+        "hf_hash_type": "sha256"
+      },
+      {
+        "file": "model-00008-of-00014.safetensors",
+        "bytes": 7133809175,
+        "sha256": "e0e9ef602d2432ac93331873e61b99d627f4823c409e190dfe6760c2e3c920c7",
+        "hf_hash": "e0e9ef602d2432ac93331873e61b99d627f4823c409e190dfe6760c2e3c920c7",
+        "hf_hash_type": "sha256"
+      },
+      {
+        "file": "model-00009-of-00014.safetensors",
+        "bytes": 7133809167,
+        "sha256": "79408a830b4573fa87e4a73d417179dbddcef2c119dc031a896c98c0a5234a82",
+        "hf_hash": "79408a830b4573fa87e4a73d417179dbddcef2c119dc031a896c98c0a5234a82",
+        "hf_hash_type": "sha256"
+      },
+      {
+        "file": "model-00010-of-00014.safetensors",
+        "bytes": 8143245218,
+        "sha256": "2a47473a533f47cbd9c5defecb358c5861d309e657ef2ae1ae0cce6bf127cb63",
+        "hf_hash": "2a47473a533f47cbd9c5defecb358c5861d309e657ef2ae1ae0cce6bf127cb63",
+        "hf_hash_type": "sha256"
+      },
+      {
+        "file": "model-00011-of-00014.safetensors",
+        "bytes": 7690259410,
+        "sha256": "c7fa97fdf29e9884dc2a67115a95efffb0cf42735f84333d5896d350c92851b7",
+        "hf_hash": "c7fa97fdf29e9884dc2a67115a95efffb0cf42735f84333d5896d350c92851b7",
+        "hf_hash_type": "sha256"
+      },
+      {
+        "file": "model-00012-of-00014.safetensors",
+        "bytes": 7690259490,
+        "sha256": "8001dbf6fb8766bd3e64c9d4d607f4ebefd50f67737086576c8669378fda577e",
+        "hf_hash": "8001dbf6fb8766bd3e64c9d4d607f4ebefd50f67737086576c8669378fda577e",
+        "hf_hash_type": "sha256"
+      },
+      {
+        "file": "model-00013-of-00014.safetensors",
+        "bytes": 8508517019,
+        "sha256": "edd569d7581c0e6a166ff1570895907cfb094a527298e35989dcde9255115dd4",
+        "hf_hash": "edd569d7581c0e6a166ff1570895907cfb094a527298e35989dcde9255115dd4",
+        "hf_hash_type": "sha256"
+      },
+      {
+        "file": "model-00014-of-00014.safetensors",
+        "bytes": 4370674650,
+        "sha256": "d2ddedf435688ce46ec38a138f7ffc831d9a465ec31fd1cad130f4c725fb720c",
+        "hf_hash": "d2ddedf435688ce46ec38a138f7ffc831d9a465ec31fd1cad130f4c725fb720c",
+        "hf_hash_type": "sha256"
+      },
+      {
+        "file": "model.safetensors.index.json",
+        "bytes": 16343097,
+        "sha256": "a2d56f9a5fc64f019bd4592f3515df65ff925301a36e2b790fdc30b52e8bd18c",
+        "hf_hash": "a2d56f9a5fc64f019bd4592f3515df65ff925301a36e2b790fdc30b52e8bd18c",
+        "hf_hash_type": "sha256"
+      },
+      {
+        "file": "processor_config.json",
+        "bytes": 909,
+        "sha256": "aae38374c94b08cc9b0547c6e64f05b951bd9735cea571c6988f5ed552bed3ed",
+        "hf_hash": "3ec2a058b2cdec556eca0f621e8c5164eec213c2",
+        "hf_hash_type": "git-blob-sha1"
+      },
+      {
+        "file": "quantization_config.json",
+        "bytes": 47873869,
+        "sha256": "25db52862b63ea18bac0eb444606726dc19a033ac1fa9d8c23dfcfd510728ee0",
+        "hf_hash": "25db52862b63ea18bac0eb444606726dc19a033ac1fa9d8c23dfcfd510728ee0",
+        "hf_hash_type": "sha256"
+      },
+      {
+        "file": "runtime/LICENSE",
+        "bytes": 1065,
+        "sha256": "27a32b6263fcd96c79d3beeecf221c4366780bdf15ad51986f48650bd7369bff",
+        "hf_hash": "b40e3294c2cd30839e56636a3d2ccfaaa2c0f6e6",
+        "hf_hash_type": "git-blob-sha1"
+      },
+      {
+        "file": "runtime/mixedk.py",
+        "bytes": 30258,
+        "sha256": "a5e89476af589b346e78ff9422900cdc3ebce0334d36058723e58e1fd91db1ca",
+        "hf_hash": "a31ddfb4ec4941908c1508a3e96b88bfdbaa330a",
+        "hf_hash_type": "git-blob-sha1"
+      },
+      {
+        "file": "source-export.json",
+        "bytes": 776,
+        "sha256": "cc6fd3b8654379c4c098dab5eb53a6a7403f358849d33476c68fb0d9d8350100",
+        "hf_hash": "356cd9ac32474711dee90d15334386909d619f40",
+        "hf_hash_type": "git-blob-sha1"
+      },
+      {
+        "file": "tokenizer.json",
+        "bytes": 20217442,
+        "sha256": "19e773648cb4e65de8660ea6365e10acca112d42a854923df93db4a6f333a82d",
+        "hf_hash": "19e773648cb4e65de8660ea6365e10acca112d42a854923df93db4a6f333a82d",
+        "hf_hash_type": "sha256"
+      },
+      {
+        "file": "tokenizer_config.json",
+        "bytes": 761,
+        "sha256": "98b1271574f41abf89427ae2dda030d94dc9478f0edc5a8bd240db213c6fd5fc",
+        "hf_hash": "e375fa0a4e16660ce0e2026e39374d35dad4c079",
+        "hf_hash_type": "git-blob-sha1"
+      }
+    ],
+    "all_selected_files_verified": true
+  },
+  "generated_launcher_tested": true,
+  "native_mtp": true,
+  "vision_enabled": true,
+  "context_capacity": 262144,
+  "api": {
+    "timestamp": "2026-11-24T15:21:13.737765-08:00",
+    "model": "mac",
+    "api": {
+      "chat": true,
+      "stream": true,
+      "stream_events": 3,
+      "request_after_disconnect": true
+    },
+    "prompt_sha256": "8166d176886a20de520e9abc7e7b8263dd5d558611c704de1e7a55941d11c729",
+    "rows": [
+      {
+        "accelerated": false,
+        "wall_seconds": 2.3600036250427365,
+        "usage": {
+          "prompt_tokens": 13,
+          "completion_tokens": 64,
+          "total_tokens": 77
+        },
+        "timings": {
+          "prompt_n": 13,
+          "cached_n": 0,
+          "prompt_ms": 197.475,
+          "prompt_per_second": 65.831,
+          "predicted_n": 64,
+          "predicted_ms": 2158.028,
+          "predicted_per_second": 29.657,
+          "tokenize_ms": 0.0
+        },
+        "output_text_sha256": "9d71420dda182b84d5d4f6176fe264db1945aa53a4b7bf185b90ec440fffa9e2",
+        "output_token_ids_sha256": "24812b48cb61735e3522485fb996af94b95763898ddbde99a17b5a34bbe5cfb7",
+        "sample": " A palindrome is a word, phrase, number, or sequence of characters that reads the same forward and backward (ignoring spaces, punctuation, and capitalization).\n\nExample 1:\nInput: \"madam\"\nOutput: True\n\nExample 2:\nInput: \"racecar\"\nOutput: True\n\nExample 3:\n"
+      },
+      {
+        "accelerated": true,
+        "wall_seconds": 4.253434957994614,
+        "usage": {
+          "prompt_tokens": 13,
+          "completion_tokens": 64,
+          "total_tokens": 77
+        },
+        "timings": {
+          "prompt_n": 13,
+          "cached_n": 0,
+          "prompt_ms": 198.271,
+          "prompt_per_second": 65.567,
+          "predicted_n": 64,
+          "predicted_ms": 2130.606,
+          "predicted_per_second": 30.038,
+          "tokenize_ms": 0.0
+        },
+        "output_text_sha256": "9d71420dda182b84d5d4f6176fe264db1945aa53a4b7bf185b90ec440fffa9e2",
+        "output_token_ids_sha256": "24812b48cb61735e3522485fb996af94b95763898ddbde99a17b5a34bbe5cfb7",
+        "sample": " A palindrome is a word, phrase, number, or sequence of characters that reads the same forward and backward (ignoring spaces, punctuation, and capitalization).\n\nExample 1:\nInput: \"madam\"\nOutput: True\n\nExample 2:\nInput: \"racecar\"\nOutput: True\n\nExample 3:\n"
+      }
+    ],
+    "paired_text_match": true,
+    "paired_token_match": true
+  },
+  "vision": {
+    "model": "mac",
+    "vision_enabled": true,
+    "passed": true,
+    "cases": [
+      {
+        "expected": "red",
+        "image_sha256": "e0f1e72f53542158f879eeba0d551478075d893004f9c39911ed564eab403ca0",
+        "response": {
+          "id": "chatcmpl-1795562475175",
+          "object": "chat.completion",
+          "created": 1795562475,
+          "model": "mac",
+          "system_fingerprint": "sushi",
+          "choices": [
+            {
+              "index": 0,
+              "message": {
+                "role": "assistant",
+                "content": "Red",
+                "reasoning_content": "The image is entirely red."
+              },
+              "logprobs": null,
+              "finish_reason": "stop"
+            }
+          ],
+          "usage": {
+            "prompt_tokens": 94,
+            "completion_tokens": 8,
+            "total_tokens": 102,
+            "prompt_tokens_details": {
+              "cached_tokens": 0
+            },
+            "completion_tokens_details": {
+              "reasoning_tokens": 6
+            }
+          },
+          "timings": {
+            "prompt_n": 94,
+            "cached_n": 0,
+            "prompt_ms": 1228.048,
+            "prompt_per_second": 76.544,
+            "predicted_n": 8,
+            "predicted_ms": 158.107,
+            "predicted_per_second": 50.598,
+            "tokenize_ms": 0.045
+          }
+        },
+        "passed": true
+      },
+      {
+        "expected": "blue",
+        "image_sha256": "a2f64a75c21bc7928ad8ab957cebff3a91e342547d119a1845e942c83ef2bcdb",
+        "response": {
+          "id": "chatcmpl-1795562475665",
+          "object": "chat.completion",
+          "created": 1795562475,
+          "model": "mac",
+          "system_fingerprint": "sushi",
+          "choices": [
+            {
+              "index": 0,
+              "message": {
+                "role": "assistant",
+                "content": "Blue",
+                "reasoning_content": "The image is entirely blue."
+              },
+              "logprobs": null,
+              "finish_reason": "stop"
+            }
+          ],
+          "usage": {
+            "prompt_tokens": 94,
+            "completion_tokens": 8,
+            "total_tokens": 102,
+            "prompt_tokens_details": {
+              "cached_tokens": 0
+            },
+            "completion_tokens_details": {
+              "reasoning_tokens": 6
+            }
+          },
+          "timings": {
+            "prompt_n": 94,
+            "cached_n": 0,
+            "prompt_ms": 325.211,
+            "prompt_per_second": 289.043,
+            "predicted_n": 8,
+            "predicted_ms": 158.975,
+            "predicted_per_second": 50.323,
+            "tokenize_ms": 0.002
+          }
+        },
+        "passed": true
+      }
+    ]
+  },
+  "matched_4k": {
+    "timestamp": "2026-11-24T23:21:15.704599+00:00",
+    "backend": "mac",
+    "mode": "accelerated",
+    "model": "mac",
+    "vision_enabled": true,
+    "context_capacity": 262144,
+    "kv_precision": "16-bit",
+    "greedy": true,
+    "ignore_eos": true,
+    "fixtures_sha256": "3a41b5589d17b38223ace1360ce5296df44349ddc4d7b10c2444c7261c70e917",
+    "arms": [
+      {
+        "name": "code",
+        "prompt_tokens": 4096,
+        "prompt_ids_sha256": "f94b39ec6b5b198041ec19edd6861acd9a15e01ff1919484f3c7cfe56da53771",
+        "output_tokens": 256,
+        "samples": [
+          {
+            "sample": 1,
+            "wall_seconds": 13.642014375014696,
+            "decode_tokens_per_second": 48.777,
+            "response": {
+              "id": "cmpl-1795562489346",
+              "object": "text_completion",
+              "created": 1795562489,
+              "model": "mac",
+              "system_fingerprint": "sushi",
+              "choices": [
+                {
+                  "index": 0,
+                  "text": " && attempt < 4) return hit;\n    try {\n      const next = await mergeIndex(id, { timeoutMs: 950 });\n      this.cache.set(id, next);\n      this.log.info(`MergeCart ${id} size=${this.cache.size}`);\n      return next;\n    } catch (err) {\n      if (attempt >= 5) throw new Error(`merge failed for ${id}: ${String(err)}`);\n      return this.mergeCart(id, attempt + 1);\n    }\n  }\n\n  async fetchCart(id: string, attempt = 2): Promise<CartRecord6 | undefined> {\n    const hit = this.cache.get(id);\n    if (hit && attempt < 4) return hit;\n    try {\n      const next = await fetchIndex(id, { timeoutMs: 9500 });\n      this.cache.set(id, next);\n      this.log.info(`FetchCart ${id} size=${this.cache.size}`);\n      return next;\n    } catch (err) {\n      if (attempt >= 5) throw new Error(`fetch failed for ${id}: ${String(err)}`);\n      return this.fetchCart(id, attempt + 1);\n    }\n  }\n\n  async retryCart(id: string, attempt = 1): Promise",
+                  "logprobs": null,
+                  "finish_reason": "length"
+                }
+              ],
+              "usage": {
+                "prompt_tokens": 4096,
+                "completion_tokens": 256,
+                "total_tokens": 4352
+              },
+              "timings": {
+                "prompt_n": 4096,
+                "cached_n": 0,
+                "prompt_ms": 8189.869,
+                "prompt_per_second": 500.13,
+                "predicted_n": 256,
+                "predicted_ms": 5248.386,
+                "predicted_per_second": 48.777,
+                "tokenize_ms": 0.0
+              },
+              "output_token_ids_sha256": "898e4bd787591ae8ed1765d5f57898badecc5aa701999bfa2a323314f5944526",
+              "output_token_ids_count": 256
+            }
+          },
+          {
+            "sample": 2,
+            "wall_seconds": 11.712243708025198,
+            "decode_tokens_per_second": 52.82,
+            "response": {
+              "id": "cmpl-1795562501059",
+              "object": "text_completion",
+              "created": 1795562501,
+              "model": "mac",
+              "system_fingerprint": "sushi",
+              "choices": [
+                {
+                  "index": 0,
+                  "text": " && attempt < 4) return hit;\n    try {\n      const next = await mergeIndex(id, { timeoutMs: 950 });\n      this.cache.set(id, next);\n      this.log.info(`MergeCart ${id} size=${this.cache.size}`);\n      return next;\n    } catch (err) {\n      if (attempt >= 5) throw new Error(`merge failed for ${id}: ${String(err)}`);\n      return this.mergeCart(id, attempt + 1);\n    }\n  }\n\n  async fetchCart(id: string, attempt = 2): Promise<CartRecord6 | undefined> {\n    const hit = this.cache.get(id);\n    if (hit && attempt < 4) return hit;\n    try {\n      const next = await fetchIndex(id, { timeoutMs: 9500 });\n      this.cache.set(id, next);\n      this.log.info(`FetchCart ${id} size=${this.cache.size}`);\n      return next;\n    } catch (err) {\n      if (attempt >= 5) throw new Error(`fetch failed for ${id}: ${String(err)}`);\n      return this.fetchCart(id, attempt + 1);\n    }\n  }\n\n  async retryCart(id: string, attempt = 1): Promise",
+                  "logprobs": null,
+                  "finish_reason": "length"
+                }
+              ],
+              "usage": {
+                "prompt_tokens": 4096,
+                "completion_tokens": 256,
+                "total_tokens": 4352
+              },
+              "timings": {
+                "prompt_n": 4096,
+                "cached_n": 0,
+                "prompt_ms": 6793.881,
+                "prompt_per_second": 602.895,
+                "predicted_n": 256,
+                "predicted_ms": 4846.671,
+                "predicted_per_second": 52.82,
+                "tokenize_ms": 0.0
+              },
+              "output_token_ids_sha256": "898e4bd787591ae8ed1765d5f57898badecc5aa701999bfa2a323314f5944526",
+              "output_token_ids_count": 256
+            }
+          },
+          {
+            "sample": 3,
+            "wall_seconds": 12.393191375012975,
+            "decode_tokens_per_second": 51.523,
+            "response": {
+              "id": "cmpl-1795562513452",
+              "object": "text_completion",
+              "created": 1795562513,
+              "model": "mac",
+              "system_fingerprint": "sushi",
+              "choices": [
+                {
+                  "index": 0,
+                  "text": " && attempt < 4) return hit;\n    try {\n      const next = await mergeIndex(id, { timeoutMs: 950 });\n      this.cache.set(id, next);\n      this.log.info(`MergeCart ${id} size=${this.cache.size}`);\n      return next;\n    } catch (err) {\n      if (attempt >= 5) throw new Error(`merge failed for ${id}: ${String(err)}`);\n      return this.mergeCart(id, attempt + 1);\n    }\n  }\n\n  async fetchCart(id: string, attempt = 2): Promise<CartRecord6 | undefined> {\n    const hit = this.cache.get(id);\n    if (hit && attempt < 4) return hit;\n    try {\n      const next = await fetchIndex(id, { timeoutMs: 9500 });\n      this.cache.set(id, next);\n      this.log.info(`FetchCart ${id} size=${this.cache.size}`);\n      return next;\n    } catch (err) {\n      if (attempt >= 5) throw new Error(`fetch failed for ${id}: ${String(err)}`);\n      return this.fetchCart(id, attempt + 1);\n    }\n  }\n\n  async retryCart(id: string, attempt = 1): Promise",
+                  "logprobs": null,
+                  "finish_reason": "length"
+                }
+              ],
+              "usage": {
+                "prompt_tokens": 4096,
+                "completion_tokens": 256,
+                "total_tokens": 4352
+              },
+              "timings": {
+                "prompt_n": 4096,
+                "cached_n": 0,
+                "prompt_ms": 7352.576,
+                "prompt_per_second": 557.084,
+                "predicted_n": 256,
+                "predicted_ms": 4968.701,
+                "predicted_per_second": 51.523,
+                "tokenize_ms": 0.0
+              },
+              "output_token_ids_sha256": "898e4bd787591ae8ed1765d5f57898badecc5aa701999bfa2a323314f5944526",
+              "output_token_ids_count": 256
+            }
+          }
+        ],
+        "median_decode_tokens_per_second": 51.523
+      },
+      {
+        "name": "prose",
+        "prompt_tokens": 4096,
+        "prompt_ids_sha256": "b9790c95f4bd2f0549f2a64e3c5e54e42c88591f380304941641154fdbca8456",
+        "output_tokens": 128,
+        "samples": [
+          {
+            "sample": 1,
+            "wall_seconds": 10.882636124966666,
+            "decode_tokens_per_second": 29.012,
+            "response": {
+              "id": "cmpl-1795562554345",
+              "object": "text_completion",
+              "created": 1795562554,
+              "model": "mac",
+              "system_fingerprint": "sushi",
+              "choices": [
+                {
+                  "index": 0,
+                  "text": " latter is\nperhaps the more delicious, because it is the more unusual. The\nconversation between the two, when Mr. Collins announces his intention\nof marrying one of the Bennet girls, is one of the most perfect things\nin the book, and the final touch of it--Mr. Bennet\u2019s \u201cI am not\ndisinclined for such a step or engagement\u201d--is one of the most perfect\nin literature. It is a little odd that Miss Austen should have made Mr.\nBennet\u2019s favourite daughter Elizabeth, and not Jane, the one who\nreproaches him with his \u201cimpropri",
+                  "logprobs": null,
+                  "finish_reason": "length"
+                }
+              ],
+              "usage": {
+                "prompt_tokens": 4096,
+                "completion_tokens": 128,
+                "total_tokens": 4224
+              },
+              "timings": {
+                "prompt_n": 4096,
+                "cached_n": 0,
+                "prompt_ms": 6398.679,
+                "prompt_per_second": 640.132,
+                "predicted_n": 128,
+                "predicted_ms": 4411.966,
+                "predicted_per_second": 29.012,
+                "tokenize_ms": 0.0
+              },
+              "output_token_ids_sha256": "b00840dc4835e92c46228e5378030f860f59de01dbe2fabd5fde7b7f875025ff",
+              "output_token_ids_count": 128
+            }
+          },
+          {
+            "sample": 2,
+            "wall_seconds": 11.35378845903324,
+            "decode_tokens_per_second": 27.927,
+            "response": {
+              "id": "cmpl-1795562565698",
+              "object": "text_completion",
+              "created": 1795562565,
+              "model": "mac",
+              "system_fingerprint": "sushi",
+              "choices": [
+                {
+                  "index": 0,
+                  "text": " latter is\nperhaps the more delicious, because it is the more unusual. The\nconversation between the two, when Mr. Collins announces his intention\nof marrying one of the Bennet girls, is one of the most perfect things\nin the book, and the final touch of it--Mr. Bennet\u2019s \u201cI am not\ndisinclined for such a step or engagement\u201d--is one of the most perfect\nin literature. It is a little odd that Miss Austen should have made Mr.\nBennet\u2019s favourite daughter Elizabeth, and not Jane, the one who\nreproaches him with his \u201cimpropri",
+                  "logprobs": null,
+                  "finish_reason": "length"
+                }
+              ],
+              "usage": {
+                "prompt_tokens": 4096,
+                "completion_tokens": 128,
+                "total_tokens": 4224
+              },
+              "timings": {
+                "prompt_n": 4096,
+                "cached_n": 0,
+                "prompt_ms": 6699.042,
+                "prompt_per_second": 611.431,
+                "predicted_n": 128,
+                "predicted_ms": 4583.379,
+                "predicted_per_second": 27.927,
+                "tokenize_ms": 0.0
+              },
+              "output_token_ids_sha256": "b00840dc4835e92c46228e5378030f860f59de01dbe2fabd5fde7b7f875025ff",
+              "output_token_ids_count": 128
+            }
+          },
+          {
+            "sample": 3,
+            "wall_seconds": 11.54265704198042,
+            "decode_tokens_per_second": 27.408,
+            "response": {
+              "id": "cmpl-1795562577241",
+              "object": "text_completion",
+              "created": 1795562577,
+              "model": "mac",
+              "system_fingerprint": "sushi",
+              "choices": [
+                {
+                  "index": 0,
+                  "text": " latter is\nperhaps the more delicious, because it is the more unusual. The\nconversation between the two, when Mr. Collins announces his intention\nof marrying one of the Bennet girls, is one of the most perfect things\nin the book, and the final touch of it--Mr. Bennet\u2019s \u201cI am not\ndisinclined for such a step or engagement\u201d--is one of the most perfect\nin literature. It is a little odd that Miss Austen should have made Mr.\nBennet\u2019s favourite daughter Elizabeth, and not Jane, the one who\nreproaches him with his \u201cimpropri",
+                  "logprobs": null,
+                  "finish_reason": "length"
+                }
+              ],
+              "usage": {
+                "prompt_tokens": 4096,
+                "completion_tokens": 128,
+                "total_tokens": 4224
+              },
+              "timings": {
+                "prompt_n": 4096,
+                "cached_n": 0,
+                "prompt_ms": 6800.697,
+                "prompt_per_second": 602.291,
+                "predicted_n": 128,
+                "predicted_ms": 4670.092,
+                "predicted_per_second": 27.408,
+                "tokenize_ms": 0.0
+              },
+              "output_token_ids_sha256": "b00840dc4835e92c46228e5378030f860f59de01dbe2fabd5fde7b7f875025ff",
+              "output_token_ids_count": 128
+            }
+          }
+        ],
+        "median_decode_tokens_per_second": 27.927
+      }
+    ],
+    "passed": true
+  },
+  "reference_comparison": {
+    "file": "mac-standalone-mtp-4k-serial-2026-11-23.json",
+    "sha256": "6e13420361e9b4a191aa6f40aa1414f9e0f1de4129ac0e89774445396f914376",
+    "all_six_output_texts_match": true,
+    "comparison": "Exact generated text compared with saved serial references; this is not a fresh paired Spark token-ID run."
+  },
+  "capacity": {
+    "native_mtp": true,
+    "backend": "mac",
+    "context_capacity": 262144,
+    "requested_prompt_tokens": 250000,
+    "kv_precision": "16-bit",
+    "fixture": "public-copy.ids.json, control IDs removed, repeated and truncated",
+    "prompt_sha256": "404d10815c93982cd51eb2aee04e5ae794bf3da51b888ee31dd769a5f2dc755b",
+    "passed": true,
+    "runtime_lock": {
+      "model": {
+        "repo": "latencylabs/GLM-5.3-Flash-lala",
+        "revision": "29443247d589703b8e1e0244ba8242bda3aee077",
+        "native_index_sha256": "a2d56f9a5fc64f019bd4592f3515df65ff925301a36e2b790fdc30b52e8bd18c",
+        "quantization_config_sha256": "25db52862b63ea18bac0eb444606726dc19a033ac1fa9d8c23dfcfd510728ee0"
+      },
+      "mac": {
+        "repo": "https://github.com/beamivalice/sushi.git",
+        "revision": "fc2fd843c2931f7cac150cdc86bb3873de273458",
+        "patch": "patches/sushi-lala.patch",
+        "zig": "0.17.1",
+        "mlx": "64ea011cb65f14d9ce2737e60db9a4ae91ed7441",
+        "mlx_c": "56b2d39fc831f2c0eb5bb94d82ef7191f7b31fa6",
+        "patch_source": "Public Sushi base plus Lala grouped verification and standalone native MTP",
+        "patch_sha256": "8bbe27a4ea3b4e1e904c0ca9329454addfd3a9b73ce0e2ee0d98487c79d8ba24",
+        "tested_binary_sha256": "54adfd9097c48fa35592659513d90114e71940f802eb7b4c62acc07bcd40472f",
+        "default_context_tokens": 262144,
+        "patched_tree": "a498817811294b2d3ce82df58a0fea143b15f633",
+        "long_context_tested_binary_sha256": "54adfd9097c48fa35592659513d90114e71940f802eb7b4c62acc07bcd40472f",
+        "dflash2_required": false,
+        "library_release": {
+          "version": "1.7.3",
+          "url": "https://github.com/beamivalice/sushi/releases/download/v1.7.3/sushi-bin-macos-arm64.tar.gz",
+          "sha256": "21cb50782f5dfcbc15e36019e320edf961cda63592bbbfb3a3a654f50fa5741a"
+        }
+      },
+      "spark": {
+        "engine": "ExLlamaV3",
+        "engine_version": "1.6.2",
+        "engine_repo": "https://github.com/turboderp-org/exllamav3.git",
+        "engine_revision": "058b8630fd081f3ff46fce6246955b157c3a2e3b",
+        "server": "TabbyAPI",
+        "server_repo": "https://github.com/theroyallab/tabbyAPI.git",
+        "server_revision": "cdea8acc4ccabe795863772e690d1357298cef74",
+        "torch": "2.13.0+cu130",
+        "triton": "3.7.1",
+        "status": "Pinned native runtime; validation results are tracked in docs/status.md",
+        "installation": "native Python environment and source-built CUDA extension",
+        "python": "3.12",
+        "cuda_toolkit": "13.0",
+        "cuda_arch": "12.1a",
+        "default_context_tokens": 262144,
+        "engine_patch": "patches/exllamav3-consistent-decode.patch",
+        "engine_patch_sha256": "aa3db0cfa9196cc637cff9d684956650f2dc18891a6dfbd2f14e2e4dbef749ed",
+        "consistent_decode_version": 1,
+        "recurrent_state_precision": "float32",
+        "kv_precision": "float16"
+      }
+    },
+    "submitted_prompt_tokens": 250000,
+    "input_format": "token IDs",
+    "memory_samples": [
+      {
+        "prefill_tokens_live": 8192,
+        "prefill_tokens_expected": 249999,
+        "memory_mb": 101134,
+        "mlx_active_bytes": 101869500252
+      },
+      {
+        "prefill_tokens_live": 20480,
+        "prefill_tokens_expected": 249999,
+        "memory_mb": 101178,
+        "mlx_active_bytes": 102147913564
+      },
+      {
+        "prefill_tokens_live": 28672,
+        "prefill_tokens_expected": 249999,
+        "memory_mb": 101594,
+        "mlx_active_bytes": 102135052124
+      },
+      {
+        "prefill_tokens_live": 38912,
+        "prefill_tokens_expected": 249999,
+        "memory_mb": 99342,
+        "mlx_active_bytes": 101983942492
+      },
+      {
+        "prefill_tokens_live": 47104,
+        "prefill_tokens_expected": 249999,
+        "memory_mb": 101174,
+        "mlx_active_bytes": 102864580524
+      },
+      {
+        "prefill_tokens_live": 53248,
+        "prefill_tokens_expected": 249999,
+        "memory_mb": 102074,
+        "mlx_active_bytes": 102459340636
+      },
+      {
+        "prefill_tokens_live": 61440,
+        "prefill_tokens_expected": 249999,
+        "memory_mb": 101443,
+        "mlx_active_bytes": 103490293592
+      },
+      {
+        "prefill_tokens_live": 67584,
+        "prefill_tokens_expected": 249999,
+        "memory_mb": 102221,
+        "mlx_active_bytes": 102641137500
+      },
+      {
+        "prefill_tokens_live": 73728,
+        "prefill_tokens_expected": 249999,
+        "memory_mb": 102125,
+        "mlx_active_bytes": 102789101404
+      },
+      {
+        "prefill_tokens_live": 79872,
+        "prefill_tokens_expected": 249999,
+        "memory_mb": 102362,
+        "mlx_active_bytes": 102891206492
+      },
+      {
+        "prefill_tokens_live": 86016,
+        "prefill_tokens_expected": 249999,
+        "memory_mb": 102245,
+        "mlx_active_bytes": 102909179740
+      },
+      {
+        "prefill_tokens_live": 90112,
+        "prefill_tokens_expected": 249999,
+        "memory_mb": 103251,
+        "mlx_active_bytes": 104220381212
+      },
+      {
+        "prefill_tokens_live": 96256,
+        "prefill_tokens_expected": 249999,
+        "memory_mb": 102771,
+        "mlx_active_bytes": 103018608476
+      },
+      {
+        "prefill_tokens_live": 102400,
+        "prefill_tokens_expected": 249999,
+        "memory_mb": 100294,
+        "mlx_active_bytes": 102842595164
+      },
+      {
+        "prefill_tokens_live": 106496,
+        "prefill_tokens_expected": 249999,
+        "memory_mb": 103189,
+        "mlx_active_bytes": 103328872284
+      },
+      {
+        "prefill_tokens_live": 110592,
+        "prefill_tokens_expected": 249999,
+        "memory_mb": 103646,
+        "mlx_active_bytes": 103392819036
+      },
+      {
+        "prefill_tokens_live": 116736,
+        "prefill_tokens_expected": 249999,
+        "memory_mb": 102559,
+        "mlx_active_bytes": 104097934380
+      },
+      {
+        "prefill_tokens_live": 120832,
+        "prefill_tokens_expected": 249999,
+        "memory_mb": 103354,
+        "mlx_active_bytes": 103357822812
+      },
+      {
+        "prefill_tokens_live": 124928,
+        "prefill_tokens_expected": 249999,
+        "memory_mb": 103435,
+        "mlx_active_bytes": 104187120644
+      },
+      {
+        "prefill_tokens_live": 129024,
+        "prefill_tokens_expected": 249999,
+        "memory_mb": 103653,
+        "mlx_active_bytes": 104726286168
+      },
+      {
+        "prefill_tokens_live": 133120,
+        "prefill_tokens_expected": 249999,
+        "memory_mb": 104192,
+        "mlx_active_bytes": 103584053084
+      },
+      {
+        "prefill_tokens_live": 137216,
+        "prefill_tokens_expected": 249999,
+        "memory_mb": 104444,
+        "mlx_active_bytes": 103620245344
+      },
+      {
+        "prefill_tokens_live": 141312,
+        "prefill_tokens_expected": 249999,
+        "memory_mb": 104390,
+        "mlx_active_bytes": 103660074844
+      },
+      {
+        "prefill_tokens_live": 145408,
+        "prefill_tokens_expected": 249999,
+        "memory_mb": 104485,
+        "mlx_active_bytes": 103723251548
+      },
+      {
+        "prefill_tokens_live": 149504,
+        "prefill_tokens_expected": 249999,
+        "memory_mb": 104422,
+        "mlx_active_bytes": 103878457180
+      },
+      {
+        "prefill_tokens_live": 153600,
+        "prefill_tokens_expected": 249999,
+        "memory_mb": 104191,
+        "mlx_active_bytes": 103888680796
+      },
+      {
+        "prefill_tokens_live": 157696,
+        "prefill_tokens_expected": 249999,
+        "memory_mb": 104085,
+        "mlx_active_bytes": 103909635932
+      },
+      {
+        "prefill_tokens_live": 161792,
+        "prefill_tokens_expected": 249999,
+        "memory_mb": 103805,
+        "mlx_active_bytes": 104041494364
+      },
+      {
+        "prefill_tokens_live": 165888,
+        "prefill_tokens_expected": 249999,
+        "memory_mb": 103254,
+        "mlx_active_bytes": 105179549724
+      },
+      {
+        "prefill_tokens_live": 167936,
+        "prefill_tokens_expected": 249999,
+        "memory_mb": 105035,
+        "mlx_active_bytes": 104069674844
+      },
+      {
+        "prefill_tokens_live": 172032,
+        "prefill_tokens_expected": 249999,
+        "memory_mb": 104561,
+        "mlx_active_bytes": 104192898908
+      },
+      {
+        "prefill_tokens_live": 176128,
+        "prefill_tokens_expected": 249999,
+        "memory_mb": 104059,
+        "mlx_active_bytes": 104755426068
+      },
+      {
+        "prefill_tokens_live": 178176,
+        "prefill_tokens_expected": 249999,
+        "memory_mb": 105084,
+        "mlx_active_bytes": 104258303836
+      },
+      {
+        "prefill_tokens_live": 182272,
+        "prefill_tokens_expected": 249999,
+        "memory_mb": 104978,
+        "mlx_active_bytes": 104236791644
+      },
+      {
+        "prefill_tokens_live": 186368,
+        "prefill_tokens_expected": 249999,
+        "memory_mb": 104240,
+        "mlx_active_bytes": 104336668508
+      },
+      {
+        "prefill_tokens_live": 188416,
+        "prefill_tokens_expected": 249999,
+        "memory_mb": 105094,
+        "mlx_active_bytes": 104360392540
+      },
+      {
+        "prefill_tokens_live": 192512,
+        "prefill_tokens_expected": 249999,
+        "memory_mb": 104648,
+        "mlx_active_bytes": 104374286172
+      },
+      {
+        "prefill_tokens_live": 196608,
+        "prefill_tokens_expected": 249999,
+        "memory_mb": 101612,
+        "mlx_active_bytes": 104184510300
+      },
+      {
+        "prefill_tokens_live": 198656,
+        "prefill_tokens_expected": 249999,
+        "memory_mb": 105072,
+        "mlx_active_bytes": 104460138332
+      },
+      {
+        "prefill_tokens_live": 202752,
+        "prefill_tokens_expected": 249999,
+        "memory_mb": 103823,
+        "mlx_active_bytes": 104431564636
+      },
+      {
+        "prefill_tokens_live": 204800,
+        "prefill_tokens_expected": 249999,
+        "memory_mb": 104976,
+        "mlx_active_bytes": 104532883292
+      },
+      {
+        "prefill_tokens_live": 208896,
+        "prefill_tokens_expected": 249999,
+        "memory_mb": 103916,
+        "mlx_active_bytes": 104623847260
+      },
+      {
+        "prefill_tokens_live": 210944,
+        "prefill_tokens_expected": 249999,
+        "memory_mb": 105095,
+        "mlx_active_bytes": 104636839772
+      },
+      {
+        "prefill_tokens_live": 215040,
+        "prefill_tokens_expected": 249999,
+        "memory_mb": 101906,
+        "mlx_active_bytes": 104402745180
+      },
+      {
+        "prefill_tokens_live": 217088,
+        "prefill_tokens_expected": 249999,
+        "memory_mb": 104928,
+        "mlx_active_bytes": 104801580892
+      },
+      {
+        "prefill_tokens_live": 219136,
+        "prefill_tokens_expected": 249999,
+        "memory_mb": 104976,
+        "mlx_active_bytes": 104828974940
+      },
+      {
+        "prefill_tokens_live": 223232,
+        "prefill_tokens_expected": 249999,
+        "memory_mb": 104890,
+        "mlx_active_bytes": 104836052828
+      },
+      {
+        "prefill_tokens_live": 225280,
+        "prefill_tokens_expected": 249999,
+        "memory_mb": 105089,
+        "mlx_active_bytes": 104823879516
+      },
+      {
+        "prefill_tokens_live": 229376,
+        "prefill_tokens_expected": 249999,
+        "memory_mb": 104234,
+        "mlx_active_bytes": 104876816220
+      },
+      {
+        "prefill_tokens_live": 231424,
+        "prefill_tokens_expected": 249999,
+        "memory_mb": 104893,
+        "mlx_active_bytes": 106059059228
+      },
+      {
+        "prefill_tokens_live": 233472,
+        "prefill_tokens_expected": 249999,
+        "memory_mb": 104940,
+        "mlx_active_bytes": 104946284380
+      },
+      {
+        "prefill_tokens_live": 237568,
+        "prefill_tokens_expected": 249999,
+        "memory_mb": 104752,
+        "mlx_active_bytes": 104990865244
+      },
+      {
+        "prefill_tokens_live": 239616,
+        "prefill_tokens_expected": 249999,
+        "memory_mb": 104912,
+        "mlx_active_bytes": 105009592156
+      },
+      {
+        "prefill_tokens_live": 241664,
+        "prefill_tokens_expected": 249999,
+        "memory_mb": 105082,
+        "mlx_active_bytes": 105168861020
+      },
+      {
+        "prefill_tokens_live": 245760,
+        "prefill_tokens_expected": 249999,
+        "memory_mb": 104487,
+        "mlx_active_bytes": 105079191388
+      },
+      {
+        "prefill_tokens_live": 247808,
+        "prefill_tokens_expected": 249999,
+        "memory_mb": 104941,
+        "mlx_active_bytes": 105293286908
+      }
+    ],
+    "elapsed_seconds": 1696.0380219579674,
+    "response": {
+      "id": "cmpl-1795564276517",
+      "object": "text_completion",
+      "created": 1795564276,
+      "model": "mac",
+      "system_fingerprint": "sushi",
+      "choices": [
+        {
+          "index": 0,
+          "text": " mainland that he answered slowly over the following weeks. He knew the tides the way other men knew the streets of their town, and he could tell from the",
+          "logprobs": null,
+          "finish_reason": "length"
+        }
+      ],
+      "usage": {
+        "prompt_tokens": 250000,
+        "completion_tokens": 32,
+        "total_tokens": 250032
+      },
+      "timings": {
+        "prompt_n": 250000,
+        "cached_n": 0,
+        "prompt_ms": 1684132.946,
+        "prompt_per_second": 148.444,
+        "predicted_n": 32,
+        "predicted_ms": 996.389,
+        "predicted_per_second": 32.116,
+        "tokenize_ms": 0.0
+      },
+      "output_token_ids_sha256": "292ef073e6c331f59d1724500783602f9fb1105213b237f02ecb138e53a50456",
+      "output_token_ids_count": 32
+    },
+    "followup_usage": {
+      "prompt_tokens": 15,
+      "completion_tokens": 8,
+      "total_tokens": 23,
+      "prompt_tokens_details": {
+        "cached_tokens": 0
+      },
+      "completion_tokens_details": {
+        "reasoning_tokens": 0
+      }
+    }
+  },
+  "limits": "Capacity fixture repeats public text; image cases check red/blue recognition. Neither is a general quality evaluation.",
+  "host": "M5 Max MacBook Pro, 128 GB, macOS 27.2.1",
+  "runtime_install": {
+    "fresh_sushi_clone": true,
+    "fresh_zig_download": true,
+    "isolated_zig_cache": true,
+    "full_xcode_required": false,
+    "mlx_source_compiled": false,
+    "external_library_stage_used": false,
+    "sushi_binary_sha256": "e45a1f6a111213e829e632ab8e0f35a1ae0d3f264aa8fb9f520b33c292746571",
+    "libraries": {
+      "version": "1.7.3",
+      "url": "https://github.com/beamivalice/sushi/releases/download/v1.7.3/sushi-bin-macos-arm64.tar.gz",
+      "sha256": "21cb50782f5dfcbc15e36019e320edf961cda63592bbbfb3a3a654f50fa5741a",
+      "files": {
+        "lib/libmlx.dylib": "32e350c117fac852631814b91a54243b9a098c28c7af989bf8a3495ab04df4a2",
+        "lib/libmlxc.dylib": "fa2a1bff8d2b5ea43bdbdb58b21cc4a17eefff5c9f248be85ef6cb6d7582c41d",
+        "lib/libjaccl.dylib": "5471ecb79629e90bd91a05f9cdd0adf24662b4641d46846d62851431cd06706b",
+        "lib/libwebp.dylib": "0335a23ff7b98574b601d466f63ac73f10e9453b6cc1477a4fa411339115344c",
+        "lib/libsharpyuv.dylib": "c71bdc084f1fcbdb97c3ed3078cd671dd4805abde639151fa35cf41e55b9ced7",
+        "lib/mlx.metallib": "95974b7de464ec2be7833a914ca5a53d283a70789470fd84218738fc8fcea3e1",
+        "LICENSE": "cc36db77e37befda5a489f2f9e56df94f673406d2ea5f4232211d06e32271a02",
+        "LICENSE-APACHE-2.0": "c71d239df91726fc519c6eb72d318ec65820627232b2f796219e87dcf35d0ab4",
+        "NOTICE": "bf2199f439719f6b7fc281ff5daf39cac26d8ff0b27430df5964fcd12918fe95",
+        "guest.json": "d0f6e3c7860f3fe34d19fe83d5356b62b134d57885ad582dec16fe45730b43db",
+        ".version": "bd688aafdff14d50d98bad80b67c08b7bc7d69503ee58e8b83b0c148f411b7a2"
+      }
+    }
+  },
+  "repack": {
+    "mac": {
+      "complete": true,
+      "provenance_sha256": "bddc53f603e847bf3066e826e1200192f034e4936d7c921cde032d9bc589560a",
+      "source_index_sha256": "a2d56f9a5fc64f019bd4592f3515df65ff925301a36e2b790fdc30b52e8bd18c",
+      "scope": "Byte-preserving Lala EXL3 checkpoint repack",
+      "tensor_count": 151554,
+      "source_download": {
+        "repo": "latencylabs/GLM-5.3-Flash-lala",
+        "revision": "29443247d589703b8e1e0244ba8242bda3aee077",
+        "receipt_sha256": "e561d6bac6c7b79df8d4b8f41c51c571a4735d2886dac417e45baeaad9b13933",
+        "weights_verified": true
+      },
+      "repacked_expert_layers": 42
+    },
+    "mtp": {
+      "complete": true,
+      "provenance_sha256": "6b8b1b7ff33cc66711548bcdb120e876135ae2ccd9899d958ff2c2d4b0728eb1",
+      "source_index_sha256": "a2d56f9a5fc64f019bd4592f3515df65ff925301a36e2b790fdc30b52e8bd18c",
+      "source_tensor_count": 3508,
+      "output_tensor_count": 925,
+      "tensor_bytes": 3793052708
+    }
+  }
+}

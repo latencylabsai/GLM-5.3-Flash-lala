@@ -1,0 +1,918 @@
+{
+  "date": "2026-11-24",
+  "passed": true,
+  "backend": "spark",
+  "scope": "Fresh isolated runtime installation, anonymous public checkpoint download, generated-launcher serving, and 250K-input execution.",
+  "package_repository": "https://github.com/latencylabsai/GLM-5.3-Flash-lala",
+  "package_runtime_source_commit": "0d59ec35c25aa06ae2031324f006cc3e98fdd83c",
+  "package_delivery": "Repository snapshot copied to the host; anonymous GitHub clone was not tested.",
+  "setup_command": "bash scripts/setup.sh",
+  "fresh_install_directory": true,
+  "fresh_model_directory": true,
+  "fresh_hf_home": true,
+  "hf_authentication": {
+    "HF_TOKEN": "unset",
+    "HUGGING_FACE_HUB_TOKEN": "unset",
+    "HF_HUB_DISABLE_IMPLICIT_TOKEN": "1"
+  },
+  "existing_checkpoint_or_packs_reused": false,
+  "runtime_lock": {
+    "model": {
+      "repo": "latencylabs/GLM-5.3-Flash-lala",
+      "revision": "29443247d589703b8e1e0244ba8242bda3aee077",
+      "native_index_sha256": "a2d56f9a5fc64f019bd4592f3515df65ff925301a36e2b790fdc30b52e8bd18c",
+      "quantization_config_sha256": "25db52862b63ea18bac0eb444606726dc19a033ac1fa9d8c23dfcfd510728ee0"
+    },
+    "mac": {
+      "repo": "https://github.com/beamivalice/sushi.git",
+      "revision": "fc2fd843c2931f7cac150cdc86bb3873de273458",
+      "patch": "patches/sushi-lala.patch",
+      "zig": "0.17.1",
+      "mlx": "64ea011cb65f14d9ce2737e60db9a4ae91ed7441",
+      "mlx_c": "56b2d39fc831f2c0eb5bb94d82ef7191f7b31fa6",
+      "patch_source": "Public Sushi base plus Lala grouped verification and standalone native MTP",
+      "patch_sha256": "8bbe27a4ea3b4e1e904c0ca9329454addfd3a9b73ce0e2ee0d98487c79d8ba24",
+      "tested_binary_sha256": "54adfd9097c48fa35592659513d90114e71940f802eb7b4c62acc07bcd40472f",
+      "default_context_tokens": 262144,
+      "patched_tree": "a498817811294b2d3ce82df58a0fea143b15f633",
+      "long_context_tested_binary_sha256": "54adfd9097c48fa35592659513d90114e71940f802eb7b4c62acc07bcd40472f",
+      "dflash2_required": false,
+      "library_release": {
+        "version": "1.7.3",
+        "url": "https://github.com/beamivalice/sushi/releases/download/v1.7.3/sushi-bin-macos-arm64.tar.gz",
+        "sha256": "21cb50782f5dfcbc15e36019e320edf961cda63592bbbfb3a3a654f50fa5741a"
+      }
+    },
+    "spark": {
+      "engine": "ExLlamaV3",
+      "engine_version": "1.6.2",
+      "engine_repo": "https://github.com/turboderp-org/exllamav3.git",
+      "engine_revision": "058b8630fd081f3ff46fce6246955b157c3a2e3b",
+      "server": "TabbyAPI",
+      "server_repo": "https://github.com/theroyallab/tabbyAPI.git",
+      "server_revision": "cdea8acc4ccabe795863772e690d1357298cef74",
+      "torch": "2.13.0+cu130",
+      "triton": "3.7.1",
+      "status": "Pinned native runtime; validation results are tracked in docs/status.md",
+      "installation": "native Python environment and source-built CUDA extension",
+      "python": "3.12",
+      "cuda_toolkit": "13.0",
+      "cuda_arch": "12.1a",
+      "default_context_tokens": 262144,
+      "engine_patch": "patches/exllamav3-consistent-decode.patch",
+      "engine_patch_sha256": "aa3db0cfa9196cc637cff9d684956650f2dc18891a6dfbd2f14e2e4dbef749ed",
+      "consistent_decode_version": 1,
+      "recurrent_state_precision": "float32",
+      "kv_precision": "float16"
+    }
+  },
+  "download": {
+    "repo": "latencylabs/GLM-5.3-Flash-lala",
+    "revision": "29443247d589703b8e1e0244ba8242bda3aee077",
+    "metadata_only": false,
+    "verified_files": [
+      {
+        "file": "LICENSE",
+        "bytes": 1070,
+        "sha256": "30b85b6b9659f2e78aa259f8faf5d920a68dee7c9ced3fa6dba1f19f2bc4fca1",
+        "hf_hash": "986b06fb2916b3518b82c7dcc0870723b91f2f92",
+        "hf_hash_type": "git-blob-sha1"
+      },
+      {
+        "file": "README.md",
+        "bytes": 925,
+        "sha256": "500e2789b6c251c6a596cd52954e82c40516e843f8c4a8b88d33d186c0076c05",
+        "hf_hash": "c36e115cea3163ee87bd83192126fb54961beb4b",
+        "hf_hash_type": "git-blob-sha1"
+      },
+      {
+        "file": "chat_template.jinja",
+        "bytes": 10950,
+        "sha256": "0c4099f3382d6c92700dfb99725025360966fd73032f0ecf32377c0d9e6309c5",
+        "hf_hash": "06bd89e94b96652fd5d76d9f9e11cfa15e09f49d",
+        "hf_hash_type": "git-blob-sha1"
+      },
+      {
+        "file": "config.json",
+        "bytes": 7866,
+        "sha256": "62e0f9c818e9d431c666dbacfe65f830566e0f540e5adca2909d414148ea5399",
+        "hf_hash": "bbd1d6fc1861e5ea127c314b81a0fba6a9f263e6",
+        "hf_hash_type": "git-blob-sha1"
+      },
+      {
+        "file": "generation_config.json",
+        "bytes": 194,
+        "sha256": "230c30609ecbbb9e6583bedde8e7bdda0c6eb8fe5fad0eaeb3d1b293d751cb4f",
+        "hf_hash": "637ee6afa5c6ebfba4eb24bd5b9df68550143597",
+        "hf_hash_type": "git-blob-sha1"
+      },
+      {
+        "file": "model-00001-of-00014.safetensors",
+        "bytes": 6453343484,
+        "sha256": "e8ab0e3120784ce82eb0d5f1ade39f4043a5b405944d14504a0ed9a0a1bbea07",
+        "hf_hash": "e8ab0e3120784ce82eb0d5f1ade39f4043a5b405944d14504a0ed9a0a1bbea07",
+        "hf_hash_type": "sha256"
+      },
+      {
+        "file": "model-00002-of-00014.safetensors",
+        "bytes": 7133798646,
+        "sha256": "0ed4f054ab43913f20252be2e68d4926b18558676453397437771a8b35eb66cb",
+        "hf_hash": "0ed4f054ab43913f20252be2e68d4926b18558676453397437771a8b35eb66cb",
+        "hf_hash_type": "sha256"
+      },
+      {
+        "file": "model-00003-of-00014.safetensors",
+        "bytes": 7105161251,
+        "sha256": "c2ee6ac00d5b3c2b9a94875df96a9ce8659bfaea5f163a50ebbefcc3017f3caa",
+        "hf_hash": "c2ee6ac00d5b3c2b9a94875df96a9ce8659bfaea5f163a50ebbefcc3017f3caa",
+        "hf_hash_type": "sha256"
+      },
+      {
+        "file": "model-00004-of-00014.safetensors",
+        "bytes": 7133809151,
+        "sha256": "c8601636b010c5aabdeb9dfb5dd2a5ee55951b0ff5da1b3b144125a534491906",
+        "hf_hash": "c8601636b010c5aabdeb9dfb5dd2a5ee55951b0ff5da1b3b144125a534491906",
+        "hf_hash_type": "sha256"
+      },
+      {
+        "file": "model-00005-of-00014.safetensors",
+        "bytes": 7133809135,
+        "sha256": "9f605917943599f46b0eaea696f24de6791dc93c6e1b258cf45a30c63b50fdc0",
+        "hf_hash": "9f605917943599f46b0eaea696f24de6791dc93c6e1b258cf45a30c63b50fdc0",
+        "hf_hash_type": "sha256"
+      },
+      {
+        "file": "model-00006-of-00014.safetensors",
+        "bytes": 7133809151,
+        "sha256": "4435b20a225b8fff4e9a29c1c4ef48ea2c04a19b1d89738f202dd3494b51ce53",
+        "hf_hash": "4435b20a225b8fff4e9a29c1c4ef48ea2c04a19b1d89738f202dd3494b51ce53",
+        "hf_hash_type": "sha256"
+      },
+      {
+        "file": "model-00007-of-00014.safetensors",
+        "bytes": 7105168177,
+        "sha256": "c959c7c4c116788ddbf6f3a7656520bc08eb7b91855f7d43c68d2f2cfefd26e9",
+        "hf_hash": "c959c7c4c116788ddbf6f3a7656520bc08eb7b91855f7d43c68d2f2cfefd26e9",
+        "hf_hash_type": "sha256"
+      },
+      {
+        "file": "model-00008-of-00014.safetensors",
+        "bytes": 7133809175,
+        "sha256": "e0e9ef602d2432ac93331873e61b99d627f4823c409e190dfe6760c2e3c920c7",
+        "hf_hash": "e0e9ef602d2432ac93331873e61b99d627f4823c409e190dfe6760c2e3c920c7",
+        "hf_hash_type": "sha256"
+      },
+      {
+        "file": "model-00009-of-00014.safetensors",
+        "bytes": 7133809167,
+        "sha256": "79408a830b4573fa87e4a73d417179dbddcef2c119dc031a896c98c0a5234a82",
+        "hf_hash": "79408a830b4573fa87e4a73d417179dbddcef2c119dc031a896c98c0a5234a82",
+        "hf_hash_type": "sha256"
+      },
+      {
+        "file": "model-00010-of-00014.safetensors",
+        "bytes": 8143245218,
+        "sha256": "2a47473a533f47cbd9c5defecb358c5861d309e657ef2ae1ae0cce6bf127cb63",
+        "hf_hash": "2a47473a533f47cbd9c5defecb358c5861d309e657ef2ae1ae0cce6bf127cb63",
+        "hf_hash_type": "sha256"
+      },
+      {
+        "file": "model-00011-of-00014.safetensors",
+        "bytes": 7690259410,
+        "sha256": "c7fa97fdf29e9884dc2a67115a95efffb0cf42735f84333d5896d350c92851b7",
+        "hf_hash": "c7fa97fdf29e9884dc2a67115a95efffb0cf42735f84333d5896d350c92851b7",
+        "hf_hash_type": "sha256"
+      },
+      {
+        "file": "model-00012-of-00014.safetensors",
+        "bytes": 7690259490,
+        "sha256": "8001dbf6fb8766bd3e64c9d4d607f4ebefd50f67737086576c8669378fda577e",
+        "hf_hash": "8001dbf6fb8766bd3e64c9d4d607f4ebefd50f67737086576c8669378fda577e",
+        "hf_hash_type": "sha256"
+      },
+      {
+        "file": "model-00013-of-00014.safetensors",
+        "bytes": 8508517019,
+        "sha256": "edd569d7581c0e6a166ff1570895907cfb094a527298e35989dcde9255115dd4",
+        "hf_hash": "edd569d7581c0e6a166ff1570895907cfb094a527298e35989dcde9255115dd4",
+        "hf_hash_type": "sha256"
+      },
+      {
+        "file": "model-00014-of-00014.safetensors",
+        "bytes": 4370674650,
+        "sha256": "d2ddedf435688ce46ec38a138f7ffc831d9a465ec31fd1cad130f4c725fb720c",
+        "hf_hash": "d2ddedf435688ce46ec38a138f7ffc831d9a465ec31fd1cad130f4c725fb720c",
+        "hf_hash_type": "sha256"
+      },
+      {
+        "file": "model.safetensors.index.json",
+        "bytes": 16343097,
+        "sha256": "a2d56f9a5fc64f019bd4592f3515df65ff925301a36e2b790fdc30b52e8bd18c",
+        "hf_hash": "a2d56f9a5fc64f019bd4592f3515df65ff925301a36e2b790fdc30b52e8bd18c",
+        "hf_hash_type": "sha256"
+      },
+      {
+        "file": "processor_config.json",
+        "bytes": 909,
+        "sha256": "aae38374c94b08cc9b0547c6e64f05b951bd9735cea571c6988f5ed552bed3ed",
+        "hf_hash": "3ec2a058b2cdec556eca0f621e8c5164eec213c2",
+        "hf_hash_type": "git-blob-sha1"
+      },
+      {
+        "file": "quantization_config.json",
+        "bytes": 47873869,
+        "sha256": "25db52862b63ea18bac0eb444606726dc19a033ac1fa9d8c23dfcfd510728ee0",
+        "hf_hash": "25db52862b63ea18bac0eb444606726dc19a033ac1fa9d8c23dfcfd510728ee0",
+        "hf_hash_type": "sha256"
+      },
+      {
+        "file": "runtime/LICENSE",
+        "bytes": 1065,
+        "sha256": "27a32b6263fcd96c79d3beeecf221c4366780bdf15ad51986f48650bd7369bff",
+        "hf_hash": "b40e3294c2cd30839e56636a3d2ccfaaa2c0f6e6",
+        "hf_hash_type": "git-blob-sha1"
+      },
+      {
+        "file": "runtime/mixedk.py",
+        "bytes": 30258,
+        "sha256": "a5e89476af589b346e78ff9422900cdc3ebce0334d36058723e58e1fd91db1ca",
+        "hf_hash": "a31ddfb4ec4941908c1508a3e96b88bfdbaa330a",
+        "hf_hash_type": "git-blob-sha1"
+      },
+      {
+        "file": "source-export.json",
+        "bytes": 776,
+        "sha256": "cc6fd3b8654379c4c098dab5eb53a6a7403f358849d33476c68fb0d9d8350100",
+        "hf_hash": "356cd9ac32474711dee90d15334386909d619f40",
+        "hf_hash_type": "git-blob-sha1"
+      },
+      {
+        "file": "tokenizer.json",
+        "bytes": 20217442,
+        "sha256": "19e773648cb4e65de8660ea6365e10acca112d42a854923df93db4a6f333a82d",
+        "hf_hash": "19e773648cb4e65de8660ea6365e10acca112d42a854923df93db4a6f333a82d",
+        "hf_hash_type": "sha256"
+      },
+      {
+        "file": "tokenizer_config.json",
+        "bytes": 761,
+        "sha256": "98b1271574f41abf89427ae2dda030d94dc9478f0edc5a8bd240db213c6fd5fc",
+        "hf_hash": "e375fa0a4e16660ce0e2026e39374d35dad4c079",
+        "hf_hash_type": "git-blob-sha1"
+      }
+    ],
+    "all_selected_files_verified": true
+  },
+  "generated_launcher_tested": true,
+  "native_mtp": true,
+  "vision_enabled": true,
+  "context_capacity": 262144,
+  "api": {
+    "timestamp": "2026-11-24T15:26:37.871692-08:00",
+    "model": "lala",
+    "api": {
+      "chat": true,
+      "stream": true,
+      "stream_events": 10,
+      "request_after_disconnect": true
+    },
+    "prompt_sha256": "8166d176886a20de520e9abc7e7b8263dd5d558611c704de1e7a55941d11c729",
+    "rows": [
+      {
+        "accelerated": false,
+        "wall_seconds": 2.3365616593509912,
+        "usage": {
+          "prompt_tokens": 13,
+          "prompt_tokens_details": {
+            "cached_tokens": 0
+          },
+          "prompt_time": 0.18,
+          "prompt_tokens_per_sec": 72.22,
+          "completion_tokens": 64,
+          "completion_tokens_details": {
+            "accepted_prediction_tokens": 45,
+            "rejected_prediction_tokens": 31
+          },
+          "completion_time": 2.15,
+          "completion_tokens_per_sec": 29.72,
+          "total_tokens": 77,
+          "total_time": 2.34
+        },
+        "timings": {
+          "cache_n": 0,
+          "prompt_n": 13,
+          "prompt_ms": 180.0,
+          "prompt_per_token_ms": 13.846153846153847,
+          "prompt_per_second": 72.22222222222221,
+          "predicted_n": 64,
+          "predicted_ms": 2150.0,
+          "predicted_per_token_ms": 33.59375,
+          "predicted_per_second": 29.767441860465116,
+          "draft_n": 76,
+          "draft_n_accepted": 45
+        },
+        "output_text_sha256": "9d71420dda182b84d5d4f6176fe264db1945aa53a4b7bf185b90ec440fffa9e2",
+        "output_token_ids_sha256": null,
+        "sample": " A palindrome is a word, phrase, number, or sequence of characters that reads the same forward and backward (ignoring spaces, punctuation, and capitalization).\n\nExample 1:\nInput: \"madam\"\nOutput: True\n\nExample 2:\nInput: \"racecar\"\nOutput: True\n\nExample 3:\n"
+      }
+    ],
+    "paired_text_match": null,
+    "paired_token_match": null
+  },
+  "vision": {
+    "model": "lala",
+    "vision_enabled": true,
+    "passed": true,
+    "cases": [
+      {
+        "expected": "red",
+        "image_sha256": "e0f1e72f53542158f879eeba0d551478075d893004f9c39911ed564eab403ca0",
+        "response": {
+          "id": "cmpl-062248e8a75c4a4abc385814f08b0a46",
+          "choices": [
+            {
+              "index": 0,
+              "finish_reason": "stop",
+              "eos_reason": "stop_token",
+              "stop_str": "<|user|>",
+              "message": {
+                "role": "assistant",
+                "content": "Red",
+                "reasoning_content": "The user is asking about the dominant color in an image. Looking at the image, it appears to be a solid red color image. The entire image seems to be filled with red color.",
+                "tool_calls": null,
+                "tool_call_id": null
+              },
+              "logprobs": null
+            }
+          ],
+          "created": 1795562799,
+          "model": "native",
+          "object": "chat.completion",
+          "usage": {
+            "prompt_tokens": 94,
+            "prompt_tokens_details": {
+              "cached_tokens": 0
+            },
+            "prompt_time": 0.47,
+            "prompt_tokens_per_sec": 200.0,
+            "completion_tokens": 41,
+            "completion_tokens_details": {
+              "accepted_prediction_tokens": 30,
+              "rejected_prediction_tokens": 14
+            },
+            "completion_time": 1.14,
+            "completion_tokens_per_sec": 36.1,
+            "total_tokens": 135,
+            "total_time": 1.61
+          },
+          "timings": {
+            "cache_n": 0,
+            "prompt_n": 94,
+            "prompt_ms": 470.0,
+            "prompt_per_token_ms": 5.0,
+            "prompt_per_second": 200.0,
+            "predicted_n": 41,
+            "predicted_ms": 1140.0,
+            "predicted_per_token_ms": 27.804878048780488,
+            "predicted_per_second": 35.96491228070175,
+            "draft_n": 44,
+            "draft_n_accepted": 30
+          }
+        },
+        "passed": true
+      },
+      {
+        "expected": "blue",
+        "image_sha256": "a2f64a75c21bc7928ad8ab957cebff3a91e342547d119a1845e942c83ef2bcdb",
+        "response": {
+          "id": "cmpl-178ad877a66a4ec0bc659f4a3ec25194",
+          "choices": [
+            {
+              "index": 0,
+              "finish_reason": "stop",
+              "eos_reason": "stop_token",
+              "stop_str": "<|user|>",
+              "message": {
+                "role": "assistant",
+                "content": "Blue",
+                "reasoning_content": "The user is asking about the dominant color in an image. Looking at the image, it appears to be a solid blue color throughout - it looks like a uniform blue rectangle/image with no other visible elements or colors.\n\nThe dominant color is blue.",
+                "tool_calls": null,
+                "tool_call_id": null
+              },
+              "logprobs": null
+            }
+          ],
+          "created": 1795562801,
+          "model": "native",
+          "object": "chat.completion",
+          "usage": {
+            "prompt_tokens": 94,
+            "prompt_tokens_details": {
+              "cached_tokens": 0
+            },
+            "prompt_time": 0.45,
+            "prompt_tokens_per_sec": 208.89,
+            "completion_tokens": 52,
+            "completion_tokens_details": {
+              "accepted_prediction_tokens": 36,
+              "rejected_prediction_tokens": 28
+            },
+            "completion_time": 1.66,
+            "completion_tokens_per_sec": 31.38,
+            "total_tokens": 146,
+            "total_time": 2.11
+          },
+          "timings": {
+            "cache_n": 0,
+            "prompt_n": 94,
+            "prompt_ms": 450.0,
+            "prompt_per_token_ms": 4.787234042553192,
+            "prompt_per_second": 208.88888888888889,
+            "predicted_n": 52,
+            "predicted_ms": 1660.0,
+            "predicted_per_token_ms": 31.923076923076923,
+            "predicted_per_second": 31.32530120481928,
+            "draft_n": 64,
+            "draft_n_accepted": 36
+          }
+        },
+        "passed": true
+      }
+    ]
+  },
+  "matched_4k": {
+    "timestamp": "2026-11-24T23:26:41.784760+00:00",
+    "backend": "spark",
+    "mode": "accelerated",
+    "model": "lala",
+    "vision_enabled": true,
+    "context_capacity": 262144,
+    "kv_precision": "16-bit",
+    "greedy": true,
+    "ignore_eos": true,
+    "fixtures_sha256": "3a41b5589d17b38223ace1360ce5296df44349ddc4d7b10c2444c7261c70e917",
+    "arms": [
+      {
+        "name": "code",
+        "prompt_tokens": 4096,
+        "prompt_ids_sha256": "f94b39ec6b5b198041ec19edd6861acd9a15e01ff1919484f3c7cfe56da53771",
+        "output_tokens": 256,
+        "samples": [
+          {
+            "sample": 1,
+            "wall_seconds": 13.241501377895474,
+            "decode_tokens_per_second": 41.55844155844156,
+            "response": {
+              "id": "cmpl-7ba39c703f954563a3a4f797265bd153",
+              "choices": [
+                {
+                  "index": 0,
+                  "finish_reason": "length",
+                  "eos_reason": "max_new_tokens",
+                  "logprobs": null,
+                  "text": " && attempt < 4) return hit;\n    try {\n      const next = await mergeIndex(id, { timeoutMs: 950 });\n      this.cache.set(id, next);\n      this.log.info(`MergeCart ${id} size=${this.cache.size}`);\n      return next;\n    } catch (err) {\n      if (attempt >= 5) throw new Error(`merge failed for ${id}: ${String(err)}`);\n      return this.mergeCart(id, attempt + 1);\n    }\n  }\n\n  async fetchCart(id: string, attempt = 2): Promise<CartRecord6 | undefined> {\n    const hit = this.cache.get(id);\n    if (hit && attempt < 4) return hit;\n    try {\n      const next = await fetchIndex(id, { timeoutMs: 9500 });\n      this.cache.set(id, next);\n      this.log.info(`FetchCart ${id} size=${this.cache.size}`);\n      return next;\n    } catch (err) {\n      if (attempt >= 5) throw new Error(`fetch failed for ${id}: ${String(err)}`);\n      return this.fetchCart(id, attempt + 1);\n    }\n  }\n\n  async retryCart(id: string, attempt = 2): Promise"
+                }
+              ],
+              "created": 1795562815,
+              "model": "native",
+              "object": "text_completion",
+              "usage": {
+                "prompt_tokens": 4096,
+                "prompt_tokens_details": {
+                  "cached_tokens": 0
+                },
+                "prompt_time": 7.08,
+                "prompt_tokens_per_sec": 578.53,
+                "completion_tokens": 256,
+                "completion_tokens_details": {
+                  "accepted_prediction_tokens": 200,
+                  "rejected_prediction_tokens": 24
+                },
+                "completion_time": 6.16,
+                "completion_tokens_per_sec": 41.57,
+                "total_tokens": 4352,
+                "total_time": 13.24
+              },
+              "timings": {
+                "cache_n": 0,
+                "prompt_n": 4096,
+                "prompt_ms": 7080.0,
+                "prompt_per_token_ms": 1.728515625,
+                "prompt_per_second": 578.5310734463277,
+                "predicted_n": 256,
+                "predicted_ms": 6160.0,
+                "predicted_per_token_ms": 24.0625,
+                "predicted_per_second": 41.55844155844156,
+                "draft_n": 224,
+                "draft_n_accepted": 200
+              }
+            }
+          },
+          {
+            "sample": 2,
+            "wall_seconds": 12.79556979984045,
+            "decode_tokens_per_second": 42.31404958677686,
+            "response": {
+              "id": "cmpl-b65bbb46d6824e7abe2349de40793592",
+              "choices": [
+                {
+                  "index": 0,
+                  "finish_reason": "length",
+                  "eos_reason": "max_new_tokens",
+                  "logprobs": null,
+                  "text": " && attempt < 4) return hit;\n    try {\n      const next = await mergeIndex(id, { timeoutMs: 950 });\n      this.cache.set(id, next);\n      this.log.info(`MergeCart ${id} size=${this.cache.size}`);\n      return next;\n    } catch (err) {\n      if (attempt >= 5) throw new Error(`merge failed for ${id}: ${String(err)}`);\n      return this.mergeCart(id, attempt + 1);\n    }\n  }\n\n  async fetchCart(id: string, attempt = 2): Promise<CartRecord6 | undefined> {\n    const hit = this.cache.get(id);\n    if (hit && attempt < 4) return hit;\n    try {\n      const next = await fetchIndex(id, { timeoutMs: 9500 });\n      this.cache.set(id, next);\n      this.log.info(`FetchCart ${id} size=${this.cache.size}`);\n      return next;\n    } catch (err) {\n      if (attempt >= 5) throw new Error(`fetch failed for ${id}: ${String(err)}`);\n      return this.fetchCart(id, attempt + 1);\n    }\n  }\n\n  async retryCart(id: string, attempt = 2): Promise"
+                }
+              ],
+              "created": 1795562827,
+              "model": "native",
+              "object": "text_completion",
+              "usage": {
+                "prompt_tokens": 4096,
+                "prompt_tokens_details": {
+                  "cached_tokens": 0
+                },
+                "prompt_time": 6.74,
+                "prompt_tokens_per_sec": 607.72,
+                "completion_tokens": 256,
+                "completion_tokens_details": {
+                  "accepted_prediction_tokens": 200,
+                  "rejected_prediction_tokens": 24
+                },
+                "completion_time": 6.05,
+                "completion_tokens_per_sec": 42.28,
+                "total_tokens": 4352,
+                "total_time": 12.8
+              },
+              "timings": {
+                "cache_n": 0,
+                "prompt_n": 4096,
+                "prompt_ms": 6740.0,
+                "prompt_per_token_ms": 1.6455078125,
+                "prompt_per_second": 607.7151335311572,
+                "predicted_n": 256,
+                "predicted_ms": 6050.0,
+                "predicted_per_token_ms": 23.6328125,
+                "predicted_per_second": 42.31404958677686,
+                "draft_n": 224,
+                "draft_n_accepted": 200
+              }
+            }
+          },
+          {
+            "sample": 3,
+            "wall_seconds": 12.783542319200933,
+            "decode_tokens_per_second": 42.244224422442244,
+            "response": {
+              "id": "cmpl-c8bcb62b0c63464eab66a7082271c151",
+              "choices": [
+                {
+                  "index": 0,
+                  "finish_reason": "length",
+                  "eos_reason": "max_new_tokens",
+                  "logprobs": null,
+                  "text": " && attempt < 4) return hit;\n    try {\n      const next = await mergeIndex(id, { timeoutMs: 950 });\n      this.cache.set(id, next);\n      this.log.info(`MergeCart ${id} size=${this.cache.size}`);\n      return next;\n    } catch (err) {\n      if (attempt >= 5) throw new Error(`merge failed for ${id}: ${String(err)}`);\n      return this.mergeCart(id, attempt + 1);\n    }\n  }\n\n  async fetchCart(id: string, attempt = 2): Promise<CartRecord6 | undefined> {\n    const hit = this.cache.get(id);\n    if (hit && attempt < 4) return hit;\n    try {\n      const next = await fetchIndex(id, { timeoutMs: 9500 });\n      this.cache.set(id, next);\n      this.log.info(`FetchCart ${id} size=${this.cache.size}`);\n      return next;\n    } catch (err) {\n      if (attempt >= 5) throw new Error(`fetch failed for ${id}: ${String(err)}`);\n      return this.fetchCart(id, attempt + 1);\n    }\n  }\n\n  async retryCart(id: string, attempt = 2): Promise"
+                }
+              ],
+              "created": 1795562840,
+              "model": "native",
+              "object": "text_completion",
+              "usage": {
+                "prompt_tokens": 4096,
+                "prompt_tokens_details": {
+                  "cached_tokens": 0
+                },
+                "prompt_time": 6.71,
+                "prompt_tokens_per_sec": 610.43,
+                "completion_tokens": 256,
+                "completion_tokens_details": {
+                  "accepted_prediction_tokens": 200,
+                  "rejected_prediction_tokens": 24
+                },
+                "completion_time": 6.06,
+                "completion_tokens_per_sec": 42.21,
+                "total_tokens": 4352,
+                "total_time": 12.78
+              },
+              "timings": {
+                "cache_n": 0,
+                "prompt_n": 4096,
+                "prompt_ms": 6710.0,
+                "prompt_per_token_ms": 1.63818359375,
+                "prompt_per_second": 610.4321907600596,
+                "predicted_n": 256,
+                "predicted_ms": 6060.0,
+                "predicted_per_token_ms": 23.671875,
+                "predicted_per_second": 42.244224422442244,
+                "draft_n": 224,
+                "draft_n_accepted": 200
+              }
+            }
+          }
+        ],
+        "median_decode_tokens_per_second": 42.244224422442244
+      },
+      {
+        "name": "prose",
+        "prompt_tokens": 4096,
+        "prompt_ids_sha256": "b9790c95f4bd2f0549f2a64e3c5e54e42c88591f380304941641154fdbca8456",
+        "output_tokens": 128,
+        "samples": [
+          {
+            "sample": 1,
+            "wall_seconds": 13.146952305920422,
+            "decode_tokens_per_second": 19.96879875195008,
+            "response": {
+              "id": "cmpl-a46dbc7aa30d4dffaef694e7d580114c",
+              "choices": [
+                {
+                  "index": 0,
+                  "finish_reason": "length",
+                  "eos_reason": "max_new_tokens",
+                  "logprobs": null,
+                  "text": " latter is\nperhaps the more delicious, because it is the more unusual. The\n\u201c_sinecure_\u201d passage is one of the very best things in the book, and\nthere is a great deal of competition for that honour._\n\n_It is, however, in the unconsciously humorous situations, in the\ninvoluntary sallies of Mrs. Bennet, in the odd mixture of quick parts,\ndotted external characters, and good personable knowledge of the world\nin Mr. Bennet, in the odd mixture of quick parts, dotted external\ncharacters, and good personable knowledge of the world in Mr"
+                }
+              ],
+              "created": 1795562883,
+              "model": "native",
+              "object": "text_completion",
+              "usage": {
+                "prompt_tokens": 4096,
+                "prompt_tokens_details": {
+                  "cached_tokens": 0
+                },
+                "prompt_time": 6.73,
+                "prompt_tokens_per_sec": 608.62,
+                "completion_tokens": 128,
+                "completion_tokens_details": {
+                  "accepted_prediction_tokens": 66,
+                  "rejected_prediction_tokens": 182
+                },
+                "completion_time": 6.41,
+                "completion_tokens_per_sec": 19.97,
+                "total_tokens": 4224,
+                "total_time": 13.14
+              },
+              "timings": {
+                "cache_n": 0,
+                "prompt_n": 4096,
+                "prompt_ms": 6730.0,
+                "prompt_per_token_ms": 1.64306640625,
+                "prompt_per_second": 608.6181277860327,
+                "predicted_n": 128,
+                "predicted_ms": 6410.0,
+                "predicted_per_token_ms": 50.078125,
+                "predicted_per_second": 19.96879875195008,
+                "draft_n": 248,
+                "draft_n_accepted": 66
+              }
+            }
+          },
+          {
+            "sample": 2,
+            "wall_seconds": 13.12854445911944,
+            "decode_tokens_per_second": 20.0,
+            "response": {
+              "id": "cmpl-9e09e99fa42b4dfba01751c4634bf086",
+              "choices": [
+                {
+                  "index": 0,
+                  "finish_reason": "length",
+                  "eos_reason": "max_new_tokens",
+                  "logprobs": null,
+                  "text": " latter is\nperhaps the more delicious, because it is the more unusual. The\n\u201c_sinecure_\u201d passage is one of the very best things in the book, and\nthere is a great deal of competition for that honour._\n\n_It is, however, in the unconsciously humorous situations, in the\ninvoluntary sallies of Mrs. Bennet, in the odd mixture of quick parts,\ndotted external characters, and good personable knowledge of the world\nin Mr. Bennet, in the odd mixture of quick parts, dotted external\ncharacters, and good personable knowledge of the world in Mr"
+                }
+              ],
+              "created": 1795562896,
+              "model": "native",
+              "object": "text_completion",
+              "usage": {
+                "prompt_tokens": 4096,
+                "prompt_tokens_details": {
+                  "cached_tokens": 0
+                },
+                "prompt_time": 6.72,
+                "prompt_tokens_per_sec": 609.52,
+                "completion_tokens": 128,
+                "completion_tokens_details": {
+                  "accepted_prediction_tokens": 66,
+                  "rejected_prediction_tokens": 182
+                },
+                "completion_time": 6.4,
+                "completion_tokens_per_sec": 19.99,
+                "total_tokens": 4224,
+                "total_time": 13.13
+              },
+              "timings": {
+                "cache_n": 0,
+                "prompt_n": 4096,
+                "prompt_ms": 6720.0,
+                "prompt_per_token_ms": 1.640625,
+                "prompt_per_second": 609.5238095238095,
+                "predicted_n": 128,
+                "predicted_ms": 6400.0,
+                "predicted_per_token_ms": 50.0,
+                "predicted_per_second": 20.0,
+                "draft_n": 248,
+                "draft_n_accepted": 66
+              }
+            }
+          },
+          {
+            "sample": 3,
+            "wall_seconds": 13.14436730183661,
+            "decode_tokens_per_second": 20.0,
+            "response": {
+              "id": "cmpl-38e9eb302e8640619817fb3b1eeb8247",
+              "choices": [
+                {
+                  "index": 0,
+                  "finish_reason": "length",
+                  "eos_reason": "max_new_tokens",
+                  "logprobs": null,
+                  "text": " latter is\nperhaps the more delicious, because it is the more unusual. The\n\u201c_sinecure_\u201d passage is one of the very best things in the book, and\nthere is a great deal of competition for that honour._\n\n_It is, however, in the unconsciously humorous situations, in the\ninvoluntary sallies of Mrs. Bennet, in the odd mixture of quick parts,\ndotted external characters, and good personable knowledge of the world\nin Mr. Bennet, in the odd mixture of quick parts, dotted external\ncharacters, and good personable knowledge of the world in Mr"
+                }
+              ],
+              "created": 1795562910,
+              "model": "native",
+              "object": "text_completion",
+              "usage": {
+                "prompt_tokens": 4096,
+                "prompt_tokens_details": {
+                  "cached_tokens": 0
+                },
+                "prompt_time": 6.74,
+                "prompt_tokens_per_sec": 607.72,
+                "completion_tokens": 128,
+                "completion_tokens_details": {
+                  "accepted_prediction_tokens": 66,
+                  "rejected_prediction_tokens": 182
+                },
+                "completion_time": 6.4,
+                "completion_tokens_per_sec": 19.99,
+                "total_tokens": 4224,
+                "total_time": 13.14
+              },
+              "timings": {
+                "cache_n": 0,
+                "prompt_n": 4096,
+                "prompt_ms": 6740.0,
+                "prompt_per_token_ms": 1.6455078125,
+                "prompt_per_second": 607.7151335311572,
+                "predicted_n": 128,
+                "predicted_ms": 6400.0,
+                "predicted_per_token_ms": 50.0,
+                "predicted_per_second": 20.0,
+                "draft_n": 248,
+                "draft_n_accepted": 66
+              }
+            }
+          }
+        ],
+        "median_decode_tokens_per_second": 20.0
+      }
+    ],
+    "passed": true
+  },
+  "reference_comparison": {
+    "file": "spark-consistent-mtp-4k-serial-2026-11-23.json",
+    "sha256": "55244f7b791b001162b8e3460a00e3609efcbd2c28c073f3e6520456c9f51651",
+    "all_six_output_texts_match": true,
+    "comparison": "Exact generated text compared with saved serial references; this is not a fresh paired Spark token-ID run."
+  },
+  "capacity": {
+    "native_mtp": true,
+    "backend": "spark",
+    "context_capacity": 262144,
+    "requested_prompt_tokens": 250000,
+    "kv_precision": "16-bit",
+    "fixture": "public-copy.ids.json, control IDs removed, repeated and truncated",
+    "prompt_sha256": "a1b865f74a707fe367105cfa1e08bb06314fc40f0ab025094406f49ff5b17301",
+    "passed": true,
+    "runtime_lock": {
+      "model": {
+        "repo": "latencylabs/GLM-5.3-Flash-lala",
+        "revision": "29443247d589703b8e1e0244ba8242bda3aee077",
+        "native_index_sha256": "a2d56f9a5fc64f019bd4592f3515df65ff925301a36e2b790fdc30b52e8bd18c",
+        "quantization_config_sha256": "25db52862b63ea18bac0eb444606726dc19a033ac1fa9d8c23dfcfd510728ee0"
+      },
+      "mac": {
+        "repo": "https://github.com/beamivalice/sushi.git",
+        "revision": "fc2fd843c2931f7cac150cdc86bb3873de273458",
+        "patch": "patches/sushi-lala.patch",
+        "zig": "0.17.1",
+        "mlx": "64ea011cb65f14d9ce2737e60db9a4ae91ed7441",
+        "mlx_c": "56b2d39fc831f2c0eb5bb94d82ef7191f7b31fa6",
+        "patch_source": "Public Sushi base plus Lala grouped verification and standalone native MTP",
+        "patch_sha256": "8bbe27a4ea3b4e1e904c0ca9329454addfd3a9b73ce0e2ee0d98487c79d8ba24",
+        "tested_binary_sha256": "54adfd9097c48fa35592659513d90114e71940f802eb7b4c62acc07bcd40472f",
+        "default_context_tokens": 262144,
+        "patched_tree": "a498817811294b2d3ce82df58a0fea143b15f633",
+        "long_context_tested_binary_sha256": "54adfd9097c48fa35592659513d90114e71940f802eb7b4c62acc07bcd40472f",
+        "dflash2_required": false,
+        "library_release": {
+          "version": "1.7.3",
+          "url": "https://github.com/beamivalice/sushi/releases/download/v1.7.3/sushi-bin-macos-arm64.tar.gz",
+          "sha256": "21cb50782f5dfcbc15e36019e320edf961cda63592bbbfb3a3a654f50fa5741a"
+        }
+      },
+      "spark": {
+        "engine": "ExLlamaV3",
+        "engine_version": "1.6.2",
+        "engine_repo": "https://github.com/turboderp-org/exllamav3.git",
+        "engine_revision": "058b8630fd081f3ff46fce6246955b157c3a2e3b",
+        "server": "TabbyAPI",
+        "server_repo": "https://github.com/theroyallab/tabbyAPI.git",
+        "server_revision": "cdea8acc4ccabe795863772e690d1357298cef74",
+        "torch": "2.13.0+cu130",
+        "triton": "3.7.1",
+        "status": "Pinned native runtime; validation results are tracked in docs/status.md",
+        "installation": "native Python environment and source-built CUDA extension",
+        "python": "3.12",
+        "cuda_toolkit": "13.0",
+        "cuda_arch": "12.1a",
+        "default_context_tokens": 262144,
+        "engine_patch": "patches/exllamav3-consistent-decode.patch",
+        "engine_patch_sha256": "aa3db0cfa9196cc637cff9d684956650f2dc18891a6dfbd2f14e2e4dbef749ed",
+        "consistent_decode_version": 1,
+        "recurrent_state_precision": "float32",
+        "kv_precision": "float16"
+      }
+    },
+    "submitted_prompt_tokens": 250096,
+    "text_sha256": "06e35f297684152fd2a3d190bc16c19f4572d919ad1723f8fdafd8bdf2ce99f1",
+    "input_format": "text, counted by TabbyAPI's tokenizer",
+    "elapsed_seconds": 377.1128575624898,
+    "response": {
+      "id": "cmpl-6fa66a1783aa45bc84c256daf3917827",
+      "choices": [
+        {
+          "index": 0,
+          "finish_reason": "length",
+          "eos_reason": "max_new_tokens",
+          "logprobs": null,
+          "text": "</think>You are a text normaliser. Output the user's text unchanged.The old lighthouse stood at the edge of the rocky cliff, its white paint weathered"
+        }
+      ],
+      "created": 1795563343,
+      "model": "native",
+      "object": "text_completion",
+      "usage": {
+        "prompt_tokens": 250096,
+        "prompt_tokens_details": {
+          "cached_tokens": 0
+        },
+        "prompt_time": 376.08,
+        "prompt_tokens_per_sec": 665.01,
+        "completion_tokens": 32,
+        "completion_tokens_details": {
+          "accepted_prediction_tokens": 24,
+          "rejected_prediction_tokens": 8
+        },
+        "completion_time": 1.0,
+        "completion_tokens_per_sec": 31.97,
+        "total_tokens": 250128,
+        "total_time": 377.08
+      },
+      "timings": {
+        "cache_n": 0,
+        "prompt_n": 250096,
+        "prompt_ms": 376080.0,
+        "prompt_per_token_ms": 1.5037425628558634,
+        "prompt_per_second": 665.0074452244203,
+        "predicted_n": 32,
+        "predicted_ms": 1000.0,
+        "predicted_per_token_ms": 31.25,
+        "predicted_per_second": 32.0,
+        "draft_n": 32,
+        "draft_n_accepted": 24
+      }
+    },
+    "followup_usage": {
+      "prompt_tokens": 15,
+      "prompt_tokens_details": {
+        "cached_tokens": 0
+      },
+      "prompt_time": 0.2,
+      "prompt_tokens_per_sec": 75.0,
+      "completion_tokens": 8,
+      "completion_tokens_details": {
+        "accepted_prediction_tokens": 4,
+        "rejected_prediction_tokens": 12
+      },
+      "completion_time": 0.43,
+      "completion_tokens_per_sec": 18.7,
+      "total_tokens": 23,
+      "total_time": 0.63
+    }
+  },
+  "limits": "Capacity fixture repeats public text; image cases check red/blue recognition. Neither is a general quality evaluation.",
+  "host": "DGX Spark, NVIDIA GB10, 128 GB, Linux aarch64",
+  "runtime_install": {
+    "isolated_python_environment": true,
+    "fresh_exllamav3_build": true,
+    "cuda_matrix_multiply_passed": true,
+    "consistent_decode_version": 1,
+    "extension_sha256": "d50e0f11c1435c4c47a02c5d45a8daf3f384b9358f6e575a9c45735ebf5244d0",
+    "python_headers": "Official Ubuntu python3.12-dev and libpython3.12-dev 3.12.3-1ubuntu0.17 packages downloaded and extracted into the test directory; CPATH points to these headers. System packages were not changed."
+  }
+}

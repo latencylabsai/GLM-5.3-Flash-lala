@@ -1,0 +1,15 @@
+{
+  "complete": true,
+  "source_download": {
+    "repo": "latencylabs/GLM-5.3-Flash-lala",
+    "revision": "6019287f77953ed023fa29b610ab9ceb94c4761e",
+    "receipt_sha256": "47a37c5039635f331cf0fbb9a99f08b392bd479cdcbafe772ad214b034a309f9",
+    "weights_verified": true
+  },
+  "tensor_count": 151554,
+  "vision_serving_tensors": 835,
+  "vision_exl3_banks": 172,
+  "vision_banks_have_unsigned_banked_layout": true,
+  "provenance_sha256": "b513ef5190b7aee3c0eff2fd348869690efd7e56c09b200d0eaf17fefb9766fb",
+  "payload_verification": "all source tensor payloads copied and read-back hashed by repacker"
+}

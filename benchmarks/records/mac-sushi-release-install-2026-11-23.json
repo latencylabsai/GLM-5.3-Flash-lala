@@ -1,0 +1,843 @@
+{
+  "passed": true,
+  "scope": "Fresh Mac runtime installation and serving with previously verified model packs; not a fresh model download/repack or a new 250K-input test.",
+  "host": "M5 Max MacBook Pro, 128 GB, macOS 27.2.1",
+  "developer_directory": "/Library/Developer/CommandLineTools",
+  "full_xcode_installed": false,
+  "metal_compiler_available": false,
+  "mlx_source_compiled": false,
+  "external_mlx_stage_used": false,
+  "fresh_sushi_source_clone": true,
+  "fresh_zig_download": true,
+  "isolated_zig_build_cache": true,
+  "library_payloads_match_previous_validated_release": true,
+  "library_stage_is_symlink": false,
+  "sushi_binary_sha256": "e9ffd6008af40feb8dd12faa780ec136a2d6e4c9d5e332800392ff3e3b44510c",
+  "runtime_lock": {
+    "model": {
+      "repo": "latencylabs/GLM-5.3-Flash-lala",
+      "revision": "6019287f77953ed023fa29b610ab9ceb94c4761e",
+      "native_index_sha256": "a2d56f9a5fc64f019bd4592f3515df65ff925301a36e2b790fdc30b52e8bd18c",
+      "quantization_config_sha256": "25db52862b63ea18bac0eb444606726dc19a033ac1fa9d8c23dfcfd510728ee0"
+    },
+    "mac": {
+      "repo": "https://github.com/beamivalice/sushi.git",
+      "revision": "fc2fd843c2931f7cac150cdc86bb3873de273458",
+      "patch": "patches/sushi-lala.patch",
+      "zig": "0.17.1",
+      "mlx": "64ea011cb65f14d9ce2737e60db9a4ae91ed7441",
+      "mlx_c": "56b2d39fc831f2c0eb5bb94d82ef7191f7b31fa6",
+      "patch_source": "Public Sushi base plus Lala grouped verification and standalone native MTP",
+      "patch_sha256": "8bbe27a4ea3b4e1e904c0ca9329454addfd3a9b73ce0e2ee0d98487c79d8ba24",
+      "tested_binary_sha256": "54adfd9097c48fa35592659513d90114e71940f802eb7b4c62acc07bcd40472f",
+      "default_context_tokens": 262144,
+      "patched_tree": "a498817811294b2d3ce82df58a0fea143b15f633",
+      "long_context_tested_binary_sha256": "54adfd9097c48fa35592659513d90114e71940f802eb7b4c62acc07bcd40472f",
+      "dflash2_required": false,
+      "library_release": {
+        "version": "1.7.3",
+        "url": "https://github.com/beamivalice/sushi/releases/download/v1.7.3/sushi-bin-macos-arm64.tar.gz",
+        "sha256": "21cb50782f5dfcbc15e36019e320edf961cda63592bbbfb3a3a654f50fa5741a"
+      }
+    },
+    "spark": {
+      "engine": "ExLlamaV3",
+      "engine_version": "1.6.2",
+      "engine_repo": "https://github.com/turboderp-org/exllamav3.git",
+      "engine_revision": "058b8630fd081f3ff46fce6246955b157c3a2e3b",
+      "server": "TabbyAPI",
+      "server_repo": "https://github.com/theroyallab/tabbyAPI.git",
+      "server_revision": "cdea8acc4ccabe795863772e690d1357298cef74",
+      "base_image": "glm-exl3-mtp:staged-load-20261018",
+      "base_image_id": "sha256:97fb639a43cb22ceafa6d5e4ab9936707623c3efcac2e54baaf994b7d4f45729",
+      "torch": "2.13.0+cu130",
+      "triton": "3.7.1",
+      "status": "Pinned native runtime; validation results are tracked in docs/status.md",
+      "tested_image_id": "sha256:a43c06538f58360378d745454f2273472606225fab204a0ad53969ce1da27974",
+      "installation": "native Python environment and source-built CUDA extension",
+      "python": "3.12",
+      "cuda_toolkit": "13.0",
+      "cuda_arch": "12.1a",
+      "default_context_tokens": 262144,
+      "engine_patch": "patches/exllamav3-consistent-decode.patch",
+      "engine_patch_sha256": "aa3db0cfa9196cc637cff9d684956650f2dc18891a6dfbd2f14e2e4dbef749ed",
+      "consistent_decode_version": 1,
+      "recurrent_state_precision": "float32",
+      "kv_precision": "float16"
+    }
+  },
+  "libraries": {
+    "version": "1.7.3",
+    "url": "https://github.com/beamivalice/sushi/releases/download/v1.7.3/sushi-bin-macos-arm64.tar.gz",
+    "sha256": "21cb50782f5dfcbc15e36019e320edf961cda63592bbbfb3a3a654f50fa5741a",
+    "files": {
+      "lib/libmlx.dylib": "32e350c117fac852631814b91a54243b9a098c28c7af989bf8a3495ab04df4a2",
+      "lib/libmlxc.dylib": "fa2a1bff8d2b5ea43bdbdb58b21cc4a17eefff5c9f248be85ef6cb6d7582c41d",
+      "lib/libjaccl.dylib": "5471ecb79629e90bd91a05f9cdd0adf24662b4641d46846d62851431cd06706b",
+      "lib/libwebp.dylib": "0335a23ff7b98574b601d466f63ac73f10e9453b6cc1477a4fa411339115344c",
+      "lib/libsharpyuv.dylib": "c71bdc084f1fcbdb97c3ed3078cd671dd4805abde639151fa35cf41e55b9ced7",
+      "lib/mlx.metallib": "95974b7de464ec2be7833a914ca5a53d283a70789470fd84218738fc8fcea3e1",
+      "LICENSE": "cc36db77e37befda5a489f2f9e56df94f673406d2ea5f4232211d06e32271a02",
+      "LICENSE-APACHE-2.0": "c71d239df91726fc519c6eb72d318ec65820627232b2f796219e87dcf35d0ab4",
+      "NOTICE": "bf2199f439719f6b7fc281ff5daf39cac26d8ff0b27430df5964fcd12918fe95",
+      "guest.json": "d0f6e3c7860f3fe34d19fe83d5356b62b134d57885ad582dec16fe45730b43db",
+      ".version": "bd688aafdff14d50d98bad80b67c08b7bc7d69503ee58e8b83b0c148f411b7a2"
+    }
+  },
+  "exact_4k_output_hash_agreement_with_serial_and_previous_build": true,
+  "package_tests_passed": 20,
+  "fresh_private_model_download": "Blocked: no Hugging Face credential on test host.",
+  "accelerated": {
+    "timestamp": "2026-11-24T05:07:31.011802+00:00",
+    "backend": "mac",
+    "mode": "accelerated",
+    "model": "mac-6019287-vision",
+    "vision_enabled": true,
+    "context_capacity": 262144,
+    "kv_precision": "16-bit",
+    "greedy": true,
+    "ignore_eos": true,
+    "fixtures_sha256": "3a41b5589d17b38223ace1360ce5296df44349ddc4d7b10c2444c7261c70e917",
+    "arms": [
+      {
+        "name": "code",
+        "prompt_tokens": 4096,
+        "prompt_ids_sha256": "f94b39ec6b5b198041ec19edd6861acd9a15e01ff1919484f3c7cfe56da53771",
+        "output_tokens": 256,
+        "samples": [
+          {
+            "sample": 1,
+            "wall_seconds": 34.71286779199727,
+            "decode_tokens_per_second": 28.423,
+            "response": {
+              "id": "cmpl-1795496885724",
+              "object": "text_completion",
+              "created": 1795496885,
+              "model": "mac-6019287-vision",
+              "system_fingerprint": "sushi",
+              "choices": [
+                {
+                  "index": 0,
+                  "text": " && attempt < 4) return hit;\n    try {\n      const next = await mergeIndex(id, { timeoutMs: 950 });\n      this.cache.set(id, next);\n      this.log.info(`MergeCart ${id} size=${this.cache.size}`);\n      return next;\n    } catch (err) {\n      if (attempt >= 5) throw new Error(`merge failed for ${id}: ${String(err)}`);\n      return this.mergeCart(id, attempt + 1);\n    }\n  }\n\n  async fetchCart(id: string, attempt = 2): Promise<CartRecord6 | undefined> {\n    const hit = this.cache.get(id);\n    if (hit && attempt < 4) return hit;\n    try {\n      const next = await fetchIndex(id, { timeoutMs: 9500 });\n      this.cache.set(id, next);\n      this.log.info(`FetchCart ${id} size=${this.cache.size}`);\n      return next;\n    } catch (err) {\n      if (attempt >= 5) throw new Error(`fetch failed for ${id}: ${String(err)}`);\n      return this.fetchCart(id, attempt + 1);\n    }\n  }\n\n  async retryCart(id: string, attempt = 1): Promise",
+                  "logprobs": null,
+                  "finish_reason": "length"
+                }
+              ],
+              "usage": {
+                "prompt_tokens": 4096,
+                "completion_tokens": 256,
+                "total_tokens": 4352
+              },
+              "timings": {
+                "prompt_n": 4096,
+                "cached_n": 0,
+                "prompt_ms": 9493.835,
+                "prompt_per_second": 431.438,
+                "predicted_n": 256,
+                "predicted_ms": 9006.948,
+                "predicted_per_second": 28.423,
+                "tokenize_ms": 0.0
+              },
+              "output_token_ids_sha256": "898e4bd787591ae8ed1765d5f57898badecc5aa701999bfa2a323314f5944526",
+              "output_token_ids_count": 256
+            }
+          },
+          {
+            "sample": 2,
+            "wall_seconds": 11.218259749992285,
+            "decode_tokens_per_second": 53.761,
+            "response": {
+              "id": "cmpl-1795496896943",
+              "object": "text_completion",
+              "created": 1795496896,
+              "model": "mac-6019287-vision",
+              "system_fingerprint": "sushi",
+              "choices": [
+                {
+                  "index": 0,
+                  "text": " && attempt < 4) return hit;\n    try {\n      const next = await mergeIndex(id, { timeoutMs: 950 });\n      this.cache.set(id, next);\n      this.log.info(`MergeCart ${id} size=${this.cache.size}`);\n      return next;\n    } catch (err) {\n      if (attempt >= 5) throw new Error(`merge failed for ${id}: ${String(err)}`);\n      return this.mergeCart(id, attempt + 1);\n    }\n  }\n\n  async fetchCart(id: string, attempt = 2): Promise<CartRecord6 | undefined> {\n    const hit = this.cache.get(id);\n    if (hit && attempt < 4) return hit;\n    try {\n      const next = await fetchIndex(id, { timeoutMs: 9500 });\n      this.cache.set(id, next);\n      this.log.info(`FetchCart ${id} size=${this.cache.size}`);\n      return next;\n    } catch (err) {\n      if (attempt >= 5) throw new Error(`fetch failed for ${id}: ${String(err)}`);\n      return this.fetchCart(id, attempt + 1);\n    }\n  }\n\n  async retryCart(id: string, attempt = 1): Promise",
+                  "logprobs": null,
+                  "finish_reason": "length"
+                }
+              ],
+              "usage": {
+                "prompt_tokens": 4096,
+                "completion_tokens": 256,
+                "total_tokens": 4352
+              },
+              "timings": {
+                "prompt_n": 4096,
+                "cached_n": 0,
+                "prompt_ms": 6386.409,
+                "prompt_per_second": 641.362,
+                "predicted_n": 256,
+                "predicted_ms": 4761.784,
+                "predicted_per_second": 53.761,
+                "tokenize_ms": 0.0
+              },
+              "output_token_ids_sha256": "898e4bd787591ae8ed1765d5f57898badecc5aa701999bfa2a323314f5944526",
+              "output_token_ids_count": 256
+            }
+          },
+          {
+            "sample": 3,
+            "wall_seconds": 11.771305292029865,
+            "decode_tokens_per_second": 53.388,
+            "response": {
+              "id": "cmpl-1795496908714",
+              "object": "text_completion",
+              "created": 1795496908,
+              "model": "mac-6019287-vision",
+              "system_fingerprint": "sushi",
+              "choices": [
+                {
+                  "index": 0,
+                  "text": " && attempt < 4) return hit;\n    try {\n      const next = await mergeIndex(id, { timeoutMs: 950 });\n      this.cache.set(id, next);\n      this.log.info(`MergeCart ${id} size=${this.cache.size}`);\n      return next;\n    } catch (err) {\n      if (attempt >= 5) throw new Error(`merge failed for ${id}: ${String(err)}`);\n      return this.mergeCart(id, attempt + 1);\n    }\n  }\n\n  async fetchCart(id: string, attempt = 2): Promise<CartRecord6 | undefined> {\n    const hit = this.cache.get(id);\n    if (hit && attempt < 4) return hit;\n    try {\n      const next = await fetchIndex(id, { timeoutMs: 9500 });\n      this.cache.set(id, next);\n      this.log.info(`FetchCart ${id} size=${this.cache.size}`);\n      return next;\n    } catch (err) {\n      if (attempt >= 5) throw new Error(`fetch failed for ${id}: ${String(err)}`);\n      return this.fetchCart(id, attempt + 1);\n    }\n  }\n\n  async retryCart(id: string, attempt = 1): Promise",
+                  "logprobs": null,
+                  "finish_reason": "length"
+                }
+              ],
+              "usage": {
+                "prompt_tokens": 4096,
+                "completion_tokens": 256,
+                "total_tokens": 4352
+              },
+              "timings": {
+                "prompt_n": 4096,
+                "cached_n": 0,
+                "prompt_ms": 6905.879,
+                "prompt_per_second": 593.118,
+                "predicted_n": 256,
+                "predicted_ms": 4795.129,
+                "predicted_per_second": 53.388,
+                "tokenize_ms": 0.0
+              },
+              "output_token_ids_sha256": "898e4bd787591ae8ed1765d5f57898badecc5aa701999bfa2a323314f5944526",
+              "output_token_ids_count": 256
+            }
+          }
+        ],
+        "median_decode_tokens_per_second": 53.388
+      },
+      {
+        "name": "prose",
+        "prompt_tokens": 4096,
+        "prompt_ids_sha256": "b9790c95f4bd2f0549f2a64e3c5e54e42c88591f380304941641154fdbca8456",
+        "output_tokens": 128,
+        "samples": [
+          {
+            "sample": 1,
+            "wall_seconds": 10.813444458006416,
+            "decode_tokens_per_second": 29.217,
+            "response": {
+              "id": "cmpl-1795496949537",
+              "object": "text_completion",
+              "created": 1795496949,
+              "model": "mac-6019287-vision",
+              "system_fingerprint": "sushi",
+              "choices": [
+                {
+                  "index": 0,
+                  "text": " latter is\nperhaps the more delicious, because it is the more unusual. The\nconversation between the two, when Mr. Collins announces his intention\nof marrying one of the Bennet girls, is one of the most perfect things\nin the book, and the final touch of it--Mr. Bennet\u2019s \u201cI am not\ndisinclined for such a step or engagement\u201d--is one of the most perfect\nin literature. It is a little odd that Miss Austen should have made Mr.\nBennet\u2019s favourite daughter Elizabeth, and not Jane, the one who\nreproaches him with his \u201cimpropri",
+                  "logprobs": null,
+                  "finish_reason": "length"
+                }
+              ],
+              "usage": {
+                "prompt_tokens": 4096,
+                "completion_tokens": 128,
+                "total_tokens": 4224
+              },
+              "timings": {
+                "prompt_n": 4096,
+                "cached_n": 0,
+                "prompt_ms": 6362.332,
+                "prompt_per_second": 643.789,
+                "predicted_n": 128,
+                "predicted_ms": 4381.064,
+                "predicted_per_second": 29.217,
+                "tokenize_ms": 0.0
+              },
+              "output_token_ids_sha256": "b00840dc4835e92c46228e5378030f860f59de01dbe2fabd5fde7b7f875025ff",
+              "output_token_ids_count": 128
+            }
+          },
+          {
+            "sample": 2,
+            "wall_seconds": 11.278572499984875,
+            "decode_tokens_per_second": 28.675,
+            "response": {
+              "id": "cmpl-1795496960815",
+              "object": "text_completion",
+              "created": 1795496960,
+              "model": "mac-6019287-vision",
+              "system_fingerprint": "sushi",
+              "choices": [
+                {
+                  "index": 0,
+                  "text": " latter is\nperhaps the more delicious, because it is the more unusual. The\nconversation between the two, when Mr. Collins announces his intention\nof marrying one of the Bennet girls, is one of the most perfect things\nin the book, and the final touch of it--Mr. Bennet\u2019s \u201cI am not\ndisinclined for such a step or engagement\u201d--is one of the most perfect\nin literature. It is a little odd that Miss Austen should have made Mr.\nBennet\u2019s favourite daughter Elizabeth, and not Jane, the one who\nreproaches him with his \u201cimpropri",
+                  "logprobs": null,
+                  "finish_reason": "length"
+                }
+              ],
+              "usage": {
+                "prompt_tokens": 4096,
+                "completion_tokens": 128,
+                "total_tokens": 4224
+              },
+              "timings": {
+                "prompt_n": 4096,
+                "cached_n": 0,
+                "prompt_ms": 6747.223,
+                "prompt_per_second": 607.065,
+                "predicted_n": 128,
+                "predicted_ms": 4463.793,
+                "predicted_per_second": 28.675,
+                "tokenize_ms": 0.0
+              },
+              "output_token_ids_sha256": "b00840dc4835e92c46228e5378030f860f59de01dbe2fabd5fde7b7f875025ff",
+              "output_token_ids_count": 128
+            }
+          },
+          {
+            "sample": 3,
+            "wall_seconds": 12.024546500004362,
+            "decode_tokens_per_second": 27.599,
+            "response": {
+              "id": "cmpl-1795496972840",
+              "object": "text_completion",
+              "created": 1795496972,
+              "model": "mac-6019287-vision",
+              "system_fingerprint": "sushi",
+              "choices": [
+                {
+                  "index": 0,
+                  "text": " latter is\nperhaps the more delicious, because it is the more unusual. The\nconversation between the two, when Mr. Collins announces his intention\nof marrying one of the Bennet girls, is one of the most perfect things\nin the book, and the final touch of it--Mr. Bennet\u2019s \u201cI am not\ndisinclined for such a step or engagement\u201d--is one of the most perfect\nin literature. It is a little odd that Miss Austen should have made Mr.\nBennet\u2019s favourite daughter Elizabeth, and not Jane, the one who\nreproaches him with his \u201cimpropri",
+                  "logprobs": null,
+                  "finish_reason": "length"
+                }
+              ],
+              "usage": {
+                "prompt_tokens": 4096,
+                "completion_tokens": 128,
+                "total_tokens": 4224
+              },
+              "timings": {
+                "prompt_n": 4096,
+                "cached_n": 0,
+                "prompt_ms": 7315.974,
+                "prompt_per_second": 559.871,
+                "predicted_n": 128,
+                "predicted_ms": 4637.929,
+                "predicted_per_second": 27.599,
+                "tokenize_ms": 0.0
+              },
+              "output_token_ids_sha256": "b00840dc4835e92c46228e5378030f860f59de01dbe2fabd5fde7b7f875025ff",
+              "output_token_ids_count": 128
+            }
+          }
+        ],
+        "median_decode_tokens_per_second": 28.675
+      }
+    ],
+    "passed": true
+  },
+  "serial": {
+    "timestamp": "2026-11-24T05:09:32.878359+00:00",
+    "backend": "mac",
+    "mode": "serial",
+    "model": "mac-6019287-vision",
+    "vision_enabled": true,
+    "context_capacity": 262144,
+    "kv_precision": "16-bit",
+    "greedy": true,
+    "ignore_eos": true,
+    "fixtures_sha256": "3a41b5589d17b38223ace1360ce5296df44349ddc4d7b10c2444c7261c70e917",
+    "arms": [
+      {
+        "name": "code",
+        "prompt_tokens": 4096,
+        "prompt_ids_sha256": "f94b39ec6b5b198041ec19edd6861acd9a15e01ff1919484f3c7cfe56da53771",
+        "output_tokens": 256,
+        "samples": [
+          {
+            "sample": 1,
+            "wall_seconds": 16.631756583985407,
+            "decode_tokens_per_second": 27.602,
+            "response": {
+              "id": "cmpl-1795496989510",
+              "object": "text_completion",
+              "created": 1795496989,
+              "model": "mac-6019287-vision",
+              "system_fingerprint": "sushi",
+              "choices": [
+                {
+                  "index": 0,
+                  "text": " && attempt < 4) return hit;\n    try {\n      const next = await mergeIndex(id, { timeoutMs: 950 });\n      this.cache.set(id, next);\n      this.log.info(`MergeCart ${id} size=${this.cache.size}`);\n      return next;\n    } catch (err) {\n      if (attempt >= 5) throw new Error(`merge failed for ${id}: ${String(err)}`);\n      return this.mergeCart(id, attempt + 1);\n    }\n  }\n\n  async fetchCart(id: string, attempt = 2): Promise<CartRecord6 | undefined> {\n    const hit = this.cache.get(id);\n    if (hit && attempt < 4) return hit;\n    try {\n      const next = await fetchIndex(id, { timeoutMs: 9500 });\n      this.cache.set(id, next);\n      this.log.info(`FetchCart ${id} size=${this.cache.size}`);\n      return next;\n    } catch (err) {\n      if (attempt >= 5) throw new Error(`fetch failed for ${id}: ${String(err)}`);\n      return this.fetchCart(id, attempt + 1);\n    }\n  }\n\n  async retryCart(id: string, attempt = 1): Promise",
+                  "logprobs": null,
+                  "finish_reason": "length"
+                }
+              ],
+              "usage": {
+                "prompt_tokens": 4096,
+                "completion_tokens": 256,
+                "total_tokens": 4352
+              },
+              "timings": {
+                "prompt_n": 4096,
+                "cached_n": 0,
+                "prompt_ms": 7353.18,
+                "prompt_per_second": 557.038,
+                "predicted_n": 256,
+                "predicted_ms": 9274.585,
+                "predicted_per_second": 27.602,
+                "tokenize_ms": 0.0
+              },
+              "output_token_ids_sha256": "898e4bd787591ae8ed1765d5f57898badecc5aa701999bfa2a323314f5944526",
+              "output_token_ids_count": 256
+            }
+          },
+          {
+            "sample": 2,
+            "wall_seconds": 16.211654749989975,
+            "decode_tokens_per_second": 28.552,
+            "response": {
+              "id": "cmpl-1795497005721",
+              "object": "text_completion",
+              "created": 1795497005,
+              "model": "mac-6019287-vision",
+              "system_fingerprint": "sushi",
+              "choices": [
+                {
+                  "index": 0,
+                  "text": " && attempt < 4) return hit;\n    try {\n      const next = await mergeIndex(id, { timeoutMs: 950 });\n      this.cache.set(id, next);\n      this.log.info(`MergeCart ${id} size=${this.cache.size}`);\n      return next;\n    } catch (err) {\n      if (attempt >= 5) throw new Error(`merge failed for ${id}: ${String(err)}`);\n      return this.mergeCart(id, attempt + 1);\n    }\n  }\n\n  async fetchCart(id: string, attempt = 2): Promise<CartRecord6 | undefined> {\n    const hit = this.cache.get(id);\n    if (hit && attempt < 4) return hit;\n    try {\n      const next = await fetchIndex(id, { timeoutMs: 9500 });\n      this.cache.set(id, next);\n      this.log.info(`FetchCart ${id} size=${this.cache.size}`);\n      return next;\n    } catch (err) {\n      if (attempt >= 5) throw new Error(`fetch failed for ${id}: ${String(err)}`);\n      return this.fetchCart(id, attempt + 1);\n    }\n  }\n\n  async retryCart(id: string, attempt = 1): Promise",
+                  "logprobs": null,
+                  "finish_reason": "length"
+                }
+              ],
+              "usage": {
+                "prompt_tokens": 4096,
+                "completion_tokens": 256,
+                "total_tokens": 4352
+              },
+              "timings": {
+                "prompt_n": 4096,
+                "cached_n": 0,
+                "prompt_ms": 7241.475,
+                "prompt_per_second": 565.631,
+                "predicted_n": 256,
+                "predicted_ms": 8966.207,
+                "predicted_per_second": 28.552,
+                "tokenize_ms": 0.0
+              },
+              "output_token_ids_sha256": "898e4bd787591ae8ed1765d5f57898badecc5aa701999bfa2a323314f5944526",
+              "output_token_ids_count": 256
+            }
+          },
+          {
+            "sample": 3,
+            "wall_seconds": 16.804698541003745,
+            "decode_tokens_per_second": 28.627,
+            "response": {
+              "id": "cmpl-1795497022526",
+              "object": "text_completion",
+              "created": 1795497022,
+              "model": "mac-6019287-vision",
+              "system_fingerprint": "sushi",
+              "choices": [
+                {
+                  "index": 0,
+                  "text": " && attempt < 4) return hit;\n    try {\n      const next = await mergeIndex(id, { timeoutMs: 950 });\n      this.cache.set(id, next);\n      this.log.info(`MergeCart ${id} size=${this.cache.size}`);\n      return next;\n    } catch (err) {\n      if (attempt >= 5) throw new Error(`merge failed for ${id}: ${String(err)}`);\n      return this.mergeCart(id, attempt + 1);\n    }\n  }\n\n  async fetchCart(id: string, attempt = 2): Promise<CartRecord6 | undefined> {\n    const hit = this.cache.get(id);\n    if (hit && attempt < 4) return hit;\n    try {\n      const next = await fetchIndex(id, { timeoutMs: 9500 });\n      this.cache.set(id, next);\n      this.log.info(`FetchCart ${id} size=${this.cache.size}`);\n      return next;\n    } catch (err) {\n      if (attempt >= 5) throw new Error(`fetch failed for ${id}: ${String(err)}`);\n      return this.fetchCart(id, attempt + 1);\n    }\n  }\n\n  async retryCart(id: string, attempt = 1): Promise",
+                  "logprobs": null,
+                  "finish_reason": "length"
+                }
+              ],
+              "usage": {
+                "prompt_tokens": 4096,
+                "completion_tokens": 256,
+                "total_tokens": 4352
+              },
+              "timings": {
+                "prompt_n": 4096,
+                "cached_n": 0,
+                "prompt_ms": 7857.967,
+                "prompt_per_second": 521.254,
+                "predicted_n": 256,
+                "predicted_ms": 8942.719,
+                "predicted_per_second": 28.627,
+                "tokenize_ms": 0.0
+              },
+              "output_token_ids_sha256": "898e4bd787591ae8ed1765d5f57898badecc5aa701999bfa2a323314f5944526",
+              "output_token_ids_count": 256
+            }
+          }
+        ],
+        "median_decode_tokens_per_second": 28.552
+      },
+      {
+        "name": "prose",
+        "prompt_tokens": 4096,
+        "prompt_ids_sha256": "b9790c95f4bd2f0549f2a64e3c5e54e42c88591f380304941641154fdbca8456",
+        "output_tokens": 128,
+        "samples": [
+          {
+            "sample": 1,
+            "wall_seconds": 10.832903583999723,
+            "decode_tokens_per_second": 28.715,
+            "response": {
+              "id": "cmpl-1795497063370",
+              "object": "text_completion",
+              "created": 1795497063,
+              "model": "mac-6019287-vision",
+              "system_fingerprint": "sushi",
+              "choices": [
+                {
+                  "index": 0,
+                  "text": " latter is\nperhaps the more delicious, because it is the more unusual. The\nconversation between the two, when Mr. Collins announces his intention\nof marrying one of the Bennet girls, is one of the most perfect things\nin the book, and the final touch of it--Mr. Bennet\u2019s \u201cI am not\ndisinclined for such a step or engagement\u201d--is one of the most perfect\nin literature. It is a little odd that Miss Austen should have made Mr.\nBennet\u2019s favourite daughter Elizabeth, and not Jane, the one who\nreproaches him with his \u201cimpropri",
+                  "logprobs": null,
+                  "finish_reason": "length"
+                }
+              ],
+              "usage": {
+                "prompt_tokens": 4096,
+                "completion_tokens": 128,
+                "total_tokens": 4224
+              },
+              "timings": {
+                "prompt_n": 4096,
+                "cached_n": 0,
+                "prompt_ms": 6367.191,
+                "prompt_per_second": 643.298,
+                "predicted_n": 128,
+                "predicted_ms": 4457.612,
+                "predicted_per_second": 28.715,
+                "tokenize_ms": 0.0
+              },
+              "output_token_ids_sha256": "b00840dc4835e92c46228e5378030f860f59de01dbe2fabd5fde7b7f875025ff",
+              "output_token_ids_count": 128
+            }
+          },
+          {
+            "sample": 2,
+            "wall_seconds": 11.172550874995068,
+            "decode_tokens_per_second": 27.67,
+            "response": {
+              "id": "cmpl-1795497074543",
+              "object": "text_completion",
+              "created": 1795497074,
+              "model": "mac-6019287-vision",
+              "system_fingerprint": "sushi",
+              "choices": [
+                {
+                  "index": 0,
+                  "text": " latter is\nperhaps the more delicious, because it is the more unusual. The\nconversation between the two, when Mr. Collins announces his intention\nof marrying one of the Bennet girls, is one of the most perfect things\nin the book, and the final touch of it--Mr. Bennet\u2019s \u201cI am not\ndisinclined for such a step or engagement\u201d--is one of the most perfect\nin literature. It is a little odd that Miss Austen should have made Mr.\nBennet\u2019s favourite daughter Elizabeth, and not Jane, the one who\nreproaches him with his \u201cimpropri",
+                  "logprobs": null,
+                  "finish_reason": "length"
+                }
+              ],
+              "usage": {
+                "prompt_tokens": 4096,
+                "completion_tokens": 128,
+                "total_tokens": 4224
+              },
+              "timings": {
+                "prompt_n": 4096,
+                "cached_n": 0,
+                "prompt_ms": 6541.634,
+                "prompt_per_second": 626.143,
+                "predicted_n": 128,
+                "predicted_ms": 4625.939,
+                "predicted_per_second": 27.67,
+                "tokenize_ms": 0.0
+              },
+              "output_token_ids_sha256": "b00840dc4835e92c46228e5378030f860f59de01dbe2fabd5fde7b7f875025ff",
+              "output_token_ids_count": 128
+            }
+          },
+          {
+            "sample": 3,
+            "wall_seconds": 11.464072000002488,
+            "decode_tokens_per_second": 27.298,
+            "response": {
+              "id": "cmpl-1795497086007",
+              "object": "text_completion",
+              "created": 1795497086,
+              "model": "mac-6019287-vision",
+              "system_fingerprint": "sushi",
+              "choices": [
+                {
+                  "index": 0,
+                  "text": " latter is\nperhaps the more delicious, because it is the more unusual. The\nconversation between the two, when Mr. Collins announces his intention\nof marrying one of the Bennet girls, is one of the most perfect things\nin the book, and the final touch of it--Mr. Bennet\u2019s \u201cI am not\ndisinclined for such a step or engagement\u201d--is one of the most perfect\nin literature. It is a little odd that Miss Austen should have made Mr.\nBennet\u2019s favourite daughter Elizabeth, and not Jane, the one who\nreproaches him with his \u201cimpropri",
+                  "logprobs": null,
+                  "finish_reason": "length"
+                }
+              ],
+              "usage": {
+                "prompt_tokens": 4096,
+                "completion_tokens": 128,
+                "total_tokens": 4224
+              },
+              "timings": {
+                "prompt_n": 4096,
+                "cached_n": 0,
+                "prompt_ms": 6770.154,
+                "prompt_per_second": 605.008,
+                "predicted_n": 128,
+                "predicted_ms": 4688.972,
+                "predicted_per_second": 27.298,
+                "tokenize_ms": 0.0
+              },
+              "output_token_ids_sha256": "b00840dc4835e92c46228e5378030f860f59de01dbe2fabd5fde7b7f875025ff",
+              "output_token_ids_count": 128
+            }
+          }
+        ],
+        "median_decode_tokens_per_second": 27.67
+      }
+    ],
+    "passed": true
+  },
+  "api": {
+    "timestamp": "2026-11-23T21:11:34.983379-08:00",
+    "model": "mac-6019287-vision",
+    "api": {
+      "chat": true,
+      "stream": true,
+      "stream_events": 3,
+      "request_after_disconnect": true
+    },
+    "prompt_sha256": "8166d176886a20de520e9abc7e7b8263dd5d558611c704de1e7a55941d11c729",
+    "warm_copy": false,
+    "rows": [
+      {
+        "accelerated": false,
+        "wall_seconds": 2.360411000030581,
+        "usage": {
+          "prompt_tokens": 13,
+          "completion_tokens": 64,
+          "total_tokens": 77
+        },
+        "timings": {
+          "prompt_n": 13,
+          "cached_n": 0,
+          "prompt_ms": 196.879,
+          "prompt_per_second": 66.03,
+          "predicted_n": 64,
+          "predicted_ms": 2159.035,
+          "predicted_per_second": 29.643,
+          "tokenize_ms": 0.0
+        },
+        "output_text_sha256": "9d71420dda182b84d5d4f6176fe264db1945aa53a4b7bf185b90ec440fffa9e2",
+        "output_token_ids_sha256": "24812b48cb61735e3522485fb996af94b95763898ddbde99a17b5a34bbe5cfb7",
+        "sample": " A palindrome is a word, phrase, number, or sequence of characters that reads the same forward and backward (ignoring spaces, punctuation, and capitalization).\n\nExample 1:\nInput: \"madam\"\nOutput: True\n\nExample 2:\nInput: \"racecar\"\nOutput: True\n\nExample 3:\n"
+      },
+      {
+        "accelerated": true,
+        "wall_seconds": 1.7846748330048285,
+        "usage": {
+          "prompt_tokens": 13,
+          "completion_tokens": 64,
+          "total_tokens": 77
+        },
+        "timings": {
+          "prompt_n": 13,
+          "cached_n": 0,
+          "prompt_ms": 197.85,
+          "prompt_per_second": 65.706,
+          "predicted_n": 64,
+          "predicted_ms": 1520.015,
+          "predicted_per_second": 42.105,
+          "tokenize_ms": 0.0
+        },
+        "output_text_sha256": "9d71420dda182b84d5d4f6176fe264db1945aa53a4b7bf185b90ec440fffa9e2",
+        "output_token_ids_sha256": "24812b48cb61735e3522485fb996af94b95763898ddbde99a17b5a34bbe5cfb7",
+        "sample": " A palindrome is a word, phrase, number, or sequence of characters that reads the same forward and backward (ignoring spaces, punctuation, and capitalization).\n\nExample 1:\nInput: \"madam\"\nOutput: True\n\nExample 2:\nInput: \"racecar\"\nOutput: True\n\nExample 3:\n"
+      }
+    ],
+    "paired_text_match": true,
+    "paired_token_match": true
+  },
+  "vision": {
+    "model": "mac-6019287-vision",
+    "vision_enabled": true,
+    "passed": true,
+    "cases": [
+      {
+        "expected": "red",
+        "image_sha256": "e0f1e72f53542158f879eeba0d551478075d893004f9c39911ed564eab403ca0",
+        "response": {
+          "id": "chatcmpl-1795497096385",
+          "object": "chat.completion",
+          "created": 1795497096,
+          "model": "mac-6019287-vision",
+          "system_fingerprint": "sushi",
+          "choices": [
+            {
+              "index": 0,
+              "message": {
+                "role": "assistant",
+                "content": "Red",
+                "reasoning_content": "The image is entirely red."
+              },
+              "logprobs": null,
+              "finish_reason": "stop"
+            }
+          ],
+          "usage": {
+            "prompt_tokens": 94,
+            "completion_tokens": 8,
+            "total_tokens": 102,
+            "prompt_tokens_details": {
+              "cached_tokens": 0
+            },
+            "completion_tokens_details": {
+              "reasoning_tokens": 6
+            }
+          },
+          "timings": {
+            "prompt_n": 94,
+            "cached_n": 0,
+            "prompt_ms": 1203.875,
+            "prompt_per_second": 78.081,
+            "predicted_n": 8,
+            "predicted_ms": 157.946,
+            "predicted_per_second": 50.65,
+            "tokenize_ms": 0.047
+          }
+        },
+        "passed": true
+      },
+      {
+        "expected": "blue",
+        "image_sha256": "a2f64a75c21bc7928ad8ab957cebff3a91e342547d119a1845e942c83ef2bcdb",
+        "response": {
+          "id": "chatcmpl-1795497096875",
+          "object": "chat.completion",
+          "created": 1795497096,
+          "model": "mac-6019287-vision",
+          "system_fingerprint": "sushi",
+          "choices": [
+            {
+              "index": 0,
+              "message": {
+                "role": "assistant",
+                "content": "Blue",
+                "reasoning_content": "The image is entirely blue."
+              },
+              "logprobs": null,
+              "finish_reason": "stop"
+            }
+          ],
+          "usage": {
+            "prompt_tokens": 94,
+            "completion_tokens": 8,
+            "total_tokens": 102,
+            "prompt_tokens_details": {
+              "cached_tokens": 0
+            },
+            "completion_tokens_details": {
+              "reasoning_tokens": 6
+            }
+          },
+          "timings": {
+            "prompt_n": 94,
+            "cached_n": 0,
+            "prompt_ms": 325.992,
+            "prompt_per_second": 288.35,
+            "predicted_n": 8,
+            "predicted_ms": 158.612,
+            "predicted_per_second": 50.438,
+            "tokenize_ms": 0.002
+          }
+        },
+        "passed": true
+      }
+    ]
+  },
+  "props": {
+    "default_generation_settings": {
+      "model": "glm5_next",
+      "n_ctx": 262144
+    },
+    "total_slots": 1,
+    "model_info": {
+      "vocab_size": 154880,
+      "hidden_size": 4096,
+      "num_hidden_layers": 45,
+      "num_attention_heads": 64,
+      "num_key_value_heads": 1,
+      "head_dim": 512,
+      "quantization_bits": 0,
+      "quantization_group_size": 64,
+      "max_position_embeddings": 1048576
+    },
+    "memory": {
+      "active_bytes": 100259535920,
+      "peak_bytes": 103516630620,
+      "available_bytes": 24363171840,
+      "total_bytes": 137438953472,
+      "max_safe_context": 556709,
+      "cache_bytes": 1048576,
+      "kv_cache_bytes": 0,
+      "owned_bytes": 10653450240
+    },
+    "batching": {
+      "supported": true,
+      "reason": "ok",
+      "max_group": 4
+    },
+    "settings": {
+      "version": "1.7.3",
+      "engine": "mlx",
+      "kv_quant": "off",
+      "kv_cache": {
+        "scheme": "off",
+        "source": "--kv-quant"
+      },
+      "prefill_chunk": 8192,
+      "mtp": {
+        "loaded": true,
+        "default_on": true,
+        "source": "--no-mtp",
+        "depth": 4,
+        "depth_source": "default",
+        "adaptive": true,
+        "max_ctx": 0
+      },
+      "drafter": "native_mtp",
+      "max_concurrent": 1,
+      "prefill_decode_share": 0.25,
+      "prefix_cache": {
+        "ram_enabled": false,
+        "mem_bytes": 0,
+        "disk_bytes": 0,
+        "disk_used_bytes": 0,
+        "disk_written_bytes": 0,
+        "disk_entries": 0,
+        "volume": {
+          "name": "Data",
+          "path": "/Users/latencylabs/.sushi/kv-cache",
+          "free_bytes": 1282588071915,
+          "total_bytes": 3996276899840
+        }
+      },
+      "vision": {
+        "loaded": true,
+        "source": "--vision",
+        "streamed_tower_bytes": 0,
+        "streamed_encode_bytes": 0
+      }
+    },
+    "update": {
+      "current": "1.7.3",
+      "latest": null,
+      "available": false,
+      "checked_at": null,
+      "url": null,
+      "error": null,
+      "command": null
+    },
+    "template_fallbacks": 0,
+    "pack_revision": null
+  }
+}

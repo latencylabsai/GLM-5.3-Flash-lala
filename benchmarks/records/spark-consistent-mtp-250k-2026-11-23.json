@@ -1,0 +1,254 @@
+{
+  "native_mtp": true,
+  "backend": "spark",
+  "context_capacity": 262144,
+  "requested_prompt_tokens": 250000,
+  "kv_precision": "16-bit",
+  "fixture": "public-copy.ids.json, control IDs removed, repeated and truncated",
+  "prompt_sha256": "a1b865f74a707fe367105cfa1e08bb06314fc40f0ab025094406f49ff5b17301",
+  "passed": true,
+  "runtime_lock": {
+    "model": {
+      "repo": "latencylabs/GLM-5.3-Flash-lala",
+      "revision": "6019287f77953ed023fa29b610ab9ceb94c4761e",
+      "native_index_sha256": "a2d56f9a5fc64f019bd4592f3515df65ff925301a36e2b790fdc30b52e8bd18c",
+      "quantization_config_sha256": "25db52862b63ea18bac0eb444606726dc19a033ac1fa9d8c23dfcfd510728ee0"
+    },
+    "mac": {
+      "repo": "https://github.com/beamivalice/sushi.git",
+      "revision": "fc2fd843c2931f7cac150cdc86bb3873de273458",
+      "patch": "patches/sushi-lala.patch",
+      "zig": "0.17.1",
+      "mlx": "64ea011cb65f14d9ce2737e60db9a4ae91ed7441",
+      "mlx_c": "56b2d39fc831f2c0eb5bb94d82ef7191f7b31fa6",
+      "patch_source": "Public Sushi base plus Lala grouped verification and standalone native MTP",
+      "patch_sha256": "8bbe27a4ea3b4e1e904c0ca9329454addfd3a9b73ce0e2ee0d98487c79d8ba24",
+      "tested_binary_sha256": "54adfd9097c48fa35592659513d90114e71940f802eb7b4c62acc07bcd40472f",
+      "default_context_tokens": 262144,
+      "patched_tree": "a498817811294b2d3ce82df58a0fea143b15f633",
+      "long_context_tested_binary_sha256": "54adfd9097c48fa35592659513d90114e71940f802eb7b4c62acc07bcd40472f",
+      "dflash2_required": false
+    },
+    "spark": {
+      "engine": "ExLlamaV3",
+      "engine_version": "1.6.2",
+      "engine_repo": "https://github.com/turboderp-org/exllamav3.git",
+      "engine_revision": "058b8630fd081f3ff46fce6246955b157c3a2e3b",
+      "server": "TabbyAPI",
+      "server_repo": "https://github.com/theroyallab/tabbyAPI.git",
+      "server_revision": "cdea8acc4ccabe795863772e690d1357298cef74",
+      "base_image": "glm-exl3-mtp:staged-load-20261018",
+      "base_image_id": "sha256:97fb639a43cb22ceafa6d5e4ab9936707623c3efcac2e54baaf994b7d4f45729",
+      "torch": "2.13.0+cu130",
+      "triton": "3.7.1",
+      "status": "Pinned native runtime; validation results are tracked in docs/status.md",
+      "tested_image_id": "sha256:a43c06538f58360378d745454f2273472606225fab204a0ad53969ce1da27974",
+      "installation": "native Python environment and source-built CUDA extension",
+      "python": "3.12",
+      "cuda_toolkit": "13.0",
+      "cuda_arch": "12.1a",
+      "default_context_tokens": 262144,
+      "engine_patch": "patches/exllamav3-consistent-decode.patch",
+      "engine_patch_sha256": "aa3db0cfa9196cc637cff9d684956650f2dc18891a6dfbd2f14e2e4dbef749ed",
+      "consistent_decode_version": 1,
+      "recurrent_state_precision": "float32",
+      "kv_precision": "float16"
+    }
+  },
+  "api": {
+    "chat": true,
+    "stream": true,
+    "stream_events": 10,
+    "request_after_disconnect": true
+  },
+  "vision": {
+    "model": "lala",
+    "vision_enabled": true,
+    "passed": true,
+    "cases": [
+      {
+        "expected": "red",
+        "image_sha256": "e0f1e72f53542158f879eeba0d551478075d893004f9c39911ed564eab403ca0",
+        "response": {
+          "id": "cmpl-b868a0718db044d99e57bedeb4e7595a",
+          "choices": [
+            {
+              "index": 0,
+              "finish_reason": "stop",
+              "eos_reason": "stop_token",
+              "stop_str": "<|user|>",
+              "message": {
+                "role": "assistant",
+                "content": "Red",
+                "reasoning_content": "The user is asking about the dominant color in an image. Looking at the image, it appears to be a solid red color image. The entire image seems to be filled with red color.",
+                "tool_calls": null,
+                "tool_call_id": null
+              },
+              "logprobs": null
+            }
+          ],
+          "created": 1795494107,
+          "model": "hf-6019287-fresh",
+          "object": "chat.completion",
+          "usage": {
+            "prompt_tokens": 94,
+            "prompt_tokens_details": {
+              "cached_tokens": 0
+            },
+            "prompt_time": 0.62,
+            "prompt_tokens_per_sec": 151.61,
+            "completion_tokens": 41,
+            "completion_tokens_details": {
+              "accepted_prediction_tokens": 30,
+              "rejected_prediction_tokens": 14
+            },
+            "completion_time": 1.13,
+            "completion_tokens_per_sec": 36.16,
+            "total_tokens": 135,
+            "total_time": 1.76
+          },
+          "timings": {
+            "cache_n": 0,
+            "prompt_n": 94,
+            "prompt_ms": 620.0,
+            "prompt_per_token_ms": 6.595744680851064,
+            "prompt_per_second": 151.61290322580643,
+            "predicted_n": 41,
+            "predicted_ms": 1130.0,
+            "predicted_per_token_ms": 27.5609756097561,
+            "predicted_per_second": 36.283185840707965,
+            "draft_n": 44,
+            "draft_n_accepted": 30
+          }
+        },
+        "passed": true
+      },
+      {
+        "expected": "blue",
+        "image_sha256": "a2f64a75c21bc7928ad8ab957cebff3a91e342547d119a1845e942c83ef2bcdb",
+        "response": {
+          "id": "cmpl-67fbd81441fc4c6ea3580ef9d54820b6",
+          "choices": [
+            {
+              "index": 0,
+              "finish_reason": "stop",
+              "eos_reason": "stop_token",
+              "stop_str": "<|user|>",
+              "message": {
+                "role": "assistant",
+                "content": "Blue",
+                "reasoning_content": "The user is asking about the dominant color in an image. Looking at the image, it appears to be a solid blue color throughout - it looks like a uniform blue rectangle/image with no other visible elements or colors.\n\nThe dominant color is blue.",
+                "tool_calls": null,
+                "tool_call_id": null
+              },
+              "logprobs": null
+            }
+          ],
+          "created": 1795494109,
+          "model": "hf-6019287-fresh",
+          "object": "chat.completion",
+          "usage": {
+            "prompt_tokens": 94,
+            "prompt_tokens_details": {
+              "cached_tokens": 0
+            },
+            "prompt_time": 0.45,
+            "prompt_tokens_per_sec": 208.89,
+            "completion_tokens": 52,
+            "completion_tokens_details": {
+              "accepted_prediction_tokens": 36,
+              "rejected_prediction_tokens": 28
+            },
+            "completion_time": 1.66,
+            "completion_tokens_per_sec": 31.29,
+            "total_tokens": 146,
+            "total_time": 2.11
+          },
+          "timings": {
+            "cache_n": 0,
+            "prompt_n": 94,
+            "prompt_ms": 450.0,
+            "prompt_per_token_ms": 4.787234042553192,
+            "prompt_per_second": 208.88888888888889,
+            "predicted_n": 52,
+            "predicted_ms": 1660.0,
+            "predicted_per_token_ms": 31.923076923076923,
+            "predicted_per_second": 31.32530120481928,
+            "draft_n": 64,
+            "draft_n_accepted": 36
+          }
+        },
+        "passed": true
+      }
+    ]
+  },
+  "submitted_prompt_tokens": 250096,
+  "text_sha256": "06e35f297684152fd2a3d190bc16c19f4572d919ad1723f8fdafd8bdf2ce99f1",
+  "input_format": "text, counted by TabbyAPI's tokenizer",
+  "elapsed_seconds": 377.91353720240295,
+  "response": {
+    "id": "cmpl-42476d2061b045ee8e9533d3e7109c2f",
+    "choices": [
+      {
+        "index": 0,
+        "finish_reason": "length",
+        "eos_reason": "max_new_tokens",
+        "logprobs": null,
+        "text": "</think>You are a text normaliser. Output the user's text unchanged.The old lighthouse stood at the edge of the rocky cliff, its white paint weathered"
+      }
+    ],
+    "created": 1795494488,
+    "model": "hf-6019287-fresh",
+    "object": "text_completion",
+    "usage": {
+      "prompt_tokens": 250096,
+      "prompt_tokens_details": {
+        "cached_tokens": 0
+      },
+      "prompt_time": 377.0,
+      "prompt_tokens_per_sec": 663.38,
+      "completion_tokens": 32,
+      "completion_tokens_details": {
+        "accepted_prediction_tokens": 24,
+        "rejected_prediction_tokens": 8
+      },
+      "completion_time": 0.89,
+      "completion_tokens_per_sec": 35.76,
+      "total_tokens": 250128,
+      "total_time": 377.9
+    },
+    "timings": {
+      "cache_n": 0,
+      "prompt_n": 250096,
+      "prompt_ms": 377000.0,
+      "prompt_per_token_ms": 1.507421150278293,
+      "prompt_per_second": 663.3846153846154,
+      "predicted_n": 32,
+      "predicted_ms": 890.0,
+      "predicted_per_token_ms": 27.8125,
+      "predicted_per_second": 35.95505617977528,
+      "draft_n": 32,
+      "draft_n_accepted": 24
+    }
+  },
+  "followup_usage": {
+    "prompt_tokens": 15,
+    "prompt_tokens_details": {
+      "cached_tokens": 0
+    },
+    "prompt_time": 0.2,
+    "prompt_tokens_per_sec": 75.0,
+    "completion_tokens": 8,
+    "completion_tokens_details": {
+      "accepted_prediction_tokens": 4,
+      "rejected_prediction_tokens": 12
+    },
+    "completion_time": 0.41,
+    "completion_tokens_per_sec": 19.62,
+    "total_tokens": 23,
+    "total_time": 0.61
+  },
+  "extension_sha256": "7db322add55f8c628a7320246b83e1dcf8ddb5dd3589f10135915a6c2276638e",
+  "recurrent_state_precision": "float32",
+  "scope": "Capacity and API/vision execution; not long-context quality or serial token equivalence."
+}

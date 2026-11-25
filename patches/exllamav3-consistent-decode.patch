@@ -1,0 +1,119 @@
+diff --git a/exllamav3/cache/cache.py b/exllamav3/cache/cache.py
+index 674ccc7ba84d352b949caf3440b9e62aee8fd3d2..ca2e79d37ebdc8b881b362c317cf4b62261e2de8 100644
+--- a/exllamav3/cache/cache.py
++++ b/exllamav3/cache/cache.py
+@@ -3,6 +3,7 @@ from abc import ABC, abstractmethod
+ from collections import deque
+ from typing import Type
+ import torch
++import os
+ from typing import TYPE_CHECKING
+ if TYPE_CHECKING:
+     from ..model import Model, Config
+@@ -140,6 +141,11 @@ class Cache:
+         :param v_bits:
+             If layer_type == CacheLayer_quant, bits per element of the quantized values tensor
+         """
++        # Serial stores state after every token; MTP stores after a whole pass.
++        # FP32 preserves identical recurrence across those different boundaries.
++        # This does not change the attention KV cache's storage dtype.
++        if os.environ.get("LALA_EXL3_CONSISTENT"):
++            recurrent_dtype = torch.float
+         self.model = model
+         # Set by Model.load() / cleared by Model.unload(): cache tensors are allocated by the
+         # model loader (per layer, on the layer's device), so a cache is only usable after a
+diff --git a/exllamav3/exllamav3_ext/bindings.cpp b/exllamav3/exllamav3_ext/bindings.cpp
+index 7698dfc1b3326eb16226ef754d097875881f75a0..c39e7fee118d5ebfe4d482b96f3149d646d1d8b1 100644
+--- a/exllamav3/exllamav3_ext/bindings.cpp
++++ b/exllamav3/exllamav3_ext/bindings.cpp
+@@ -77,6 +77,7 @@
+ 
+ PYBIND11_MODULE(TORCH_EXTENSION_NAME, m)
+ {
++    m.attr("lala_consistent_decode_version") = 1;
+     // Optional kernel families; Python checks these before taking a path that needs them. hgemm_f16acc is left
+     // out of ROCm builds (util/cuda_flags.py, HIP_EXCLUDED_SOURCES) with its bindings below: it serves GeForce
+     // parts, whose fp32-accumulate MMA runs at half rate, while RDNA's hgemm goes through the WMMA GEMM
+diff --git a/exllamav3/exllamav3_ext/libtorch/mla_attention.cpp b/exllamav3/exllamav3_ext/libtorch/mla_attention.cpp
+index 4aa0bbba6190a7e77ed1a47b0a71bd1ed40aaab8..ae649c3018d844bf7a7aef40b2a3ac489945fd7e 100644
+--- a/exllamav3/exllamav3_ext/libtorch/mla_attention.cpp
++++ b/exllamav3/exllamav3_ext/libtorch/mla_attention.cpp
+@@ -1,4 +1,5 @@
+ #include <Python.h>
++#include <cstdlib>
+ #include <ATen/ATen.h>
+ #include <c10/cuda/CUDAGuard.h>
+ #include <ATen/cuda/CUDAContext.h>
+@@ -474,8 +475,12 @@ void BC_MLAttention::run_gr
+     {
+         at::Tensor x_rows = s.x_st.narrow(0, 0, R);
+         copy2d_gr(x2, x_rows, graph);
+-        at::Tensor kidx_rows = s.kidx.narrow(0, 0, R);
+-        hgemm_gr(x_rows, idx_wk_w.value(), kidx_rows, graph);
++        // Lala: identical cuBLAS geometry for serial and native-MTP rows.
++        // Tiny key/gate rounding differences can change the sparse top-k selection.
++        const bool consistent = std::getenv("LALA_EXL3_CONSISTENT") && R <= 8;
++        at::Tensor proj_x = consistent ? s.x_st : x_rows;
++        at::Tensor kidx_rows = consistent ? s.kidx : s.kidx.narrow(0, 0, R);
++        hgemm_gr(proj_x, idx_wk_w.value(), kidx_rows, graph);
+         {
+             std::vector<void*> args =
+             {
+@@ -522,8 +527,8 @@ void BC_MLAttention::run_gr
+             // Gate scores land in the packed plane next to the keys, then the pools touched by
+             // this append are (re)built in the pooled plane (softmax(gate + ape)-weighted key
+             // means; partial pools are written but never selected)
+-            at::Tensor gidx_rows = s.gidx.narrow(0, 0, R);
+-            hgemm_gr(x_rows, idx_gate_w.value(), gidx_rows, graph);
++            at::Tensor gidx_rows = consistent ? s.gidx : s.gidx.narrow(0, 0, R);
++            hgemm_gr(proj_x, idx_gate_w.value(), gidx_rows, graph);
+             dbg("gate_hgemm");
+             {
+                 std::vector<void*> args =
+diff --git a/exllamav3/exllamav3_ext/quant/exl3_gemm.cu b/exllamav3/exllamav3_ext/quant/exl3_gemm.cu
+index c909164b5a3fcddaffabb5b232f2673abc370e05..77cd988623a0db32d523f461c6fa3fc0bcd2f5cd 100644
+--- a/exllamav3/exllamav3_ext/quant/exl3_gemm.cu
++++ b/exllamav3/exllamav3_ext/quant/exl3_gemm.cu
+@@ -142,6 +142,12 @@ int exl3_gemm_gr
+     bool c_fp32 = C.dtype() == at::kFloat;
+     if (!c_fp32) TORCH_CHECK_DTYPE(C, kHalf);
+ 
++    // Lala: one reduction geometry for serial and native-MTP verification.
++    // Autotuning by row count changes rounding and can change greedy tokens.
++    const int consistent_rows = A.numel() / A.size(-1);
++    if (std::getenv("LALA_EXL3_CONSISTENT") && consistent_rows >= 1 && consistent_rows <= 8 && force_shape_idx <= 0)
++        force_shape_idx = 1;
++
+     // Get SU, optionally
+     const half* suh_ptr = (const half*) OPTPTR(suh);
+     half* A_had_ptr = nullptr;
+diff --git a/exllamav3/exllamav3_ext/routing.cu b/exllamav3/exllamav3_ext/routing.cu
+index af328b099857d5722c9df8b082bb872bdf470a9e..ecd9d184c441ae2d222e8375f9b6108c736240c5 100644
+--- a/exllamav3/exllamav3_ext/routing.cu
++++ b/exllamav3/exllamav3_ext/routing.cu
+@@ -224,6 +224,8 @@ void routing_gemv_kernel
+     int row = blockIdx.x * RGEMV_WARPS + warp;
+     if (row >= E) return;
+ 
++    x += (size_t) blockIdx.y * k;
++    scores += (size_t) blockIdx.y * E;
+     const half2* x2 = (const half2*) x;
+     const half2* w2 = (const half2*) (gate_t + (size_t) row * k);
+ 
+@@ -276,6 +278,16 @@ void routing_gemv
+         routing_gemv_rdna_try(hidden, gate_t.value(), scores, stream)) return;
+ #endif
+ 
++    // Lala: preserve the serial FP16/FMA router for every verification row.
++    // The multi-row int8 projection changes expert weights relative to serial.
++    const int consistent_rows = hidden.numel() / k;
++    if (std::getenv("LALA_EXL3_CONSISTENT") && consistent_rows <= 8 && gate_t.has_value() && !(k & 1))
++    {
++        routing_gemv_kernel<<<dim3(CEIL_DIVIDE(E, RGEMV_WARPS), consistent_rows), RGEMV_WARPS * 32, 0, stream>>>
++        ((const half*) hidden.data_ptr(), (const half*) gate_t.value().data_ptr(), (half*) scores.data_ptr(), k, E);
++        return;
++    }
++
+     if (!bsz1 && gate_i8.has_value() && gate_sb.has_value() && routing_gemm_det_fits(hidden, gate_i8.value(), gate_sb.value(), scores))
+     {
+         routing_gemm_det_(hidden, gate_i8.value(), gate_sb.value(), scores, stream);
