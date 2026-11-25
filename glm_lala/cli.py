@@ -203,6 +203,8 @@ def spark_command(args):
     draft_mode = "serial" if args.serial else (args.spark_draft or "mtp")
     if args.context % 256:
         raise ValueError("Spark context size must be a multiple of 256.")
+    if args.recurrent_cache_mb < 0:
+        raise ValueError("--recurrent-cache-mb must be 0 or more.")
     if args.host not in {"127.0.0.1", "localhost", "::1"}:
         raise ValueError(
             "This local Spark profile disables authentication. Configure "
@@ -234,7 +236,11 @@ def spark_command(args):
             "vision": True,
         },
         "draft_model": {"draft_mode": "disabled"},
-        "memory": {"sysmem_recurrent_cache": 0, "sysmem_kv_cache": 0},
+        "memory": {
+            # Prefix reuse needs stored recurrent-state checkpoints.
+            "sysmem_recurrent_cache": args.recurrent_cache_mb,
+            "sysmem_kv_cache": 0,
+        },
         "sampling": {
             "override_preset": "safe_defaults",
             "max_tokens": {"override": args.max_tokens, "force": False},
@@ -377,6 +383,12 @@ def main():
     server.add_argument("--port", type=int, default=8000)
     server.add_argument("--context", type=int, default=262144)
     server.add_argument("--max-tokens", type=int, default=4096)
+    server.add_argument(
+        "--recurrent-cache-mb",
+        type=int,
+        default=1024,
+        help="Spark recurrent-state store for prefix reuse, in MiB (0 disables)",
+    )
     server.add_argument("--print-command", action="store_true")
     server.set_defaults(run=serve)
     args = parser.parse_args()
