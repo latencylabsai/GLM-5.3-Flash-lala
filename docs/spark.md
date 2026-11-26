@@ -4,6 +4,8 @@ Follow the [README setup](../README.md#setup) to install and start serving.
 
 Validated on **one NVIDIA GB10 with 128 GB unified memory**. Requires Python
 3.12 with venv support and development headers, a C++ compiler, and CUDA 13.0.
+On Ubuntu, install the headers and venv support with
+`sudo apt install python3.12-dev python3.12-venv`.
 
 Setup installs patched ExLlamaV3 and TabbyAPI into `.runtime/spark-venv`.
 It uses the native EXL3 checkpoint directly, without repacking. Allow
