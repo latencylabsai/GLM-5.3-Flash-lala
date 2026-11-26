@@ -15,9 +15,9 @@ Native MTP and vision are enabled by default, with one active stream and
 
 The server keeps up to 1,024 MiB of recurrent-state checkpoints, one at each
 2,048-token boundary. A request that starts with a cached prompt prefix, for
-example a follow-up chat turn, does not prefill that prefix again. A new
-prompt takes longer to prefill. Pass `--recurrent-cache-mb 0` to turn off
-prefix reuse.
+example a follow-up chat turn, does not prefill that prefix again. Each
+checkpoint costs about 80 ms. Pass `--recurrent-cache-mb 0` to turn off prefix
+reuse.
 
 ## Validate
 
