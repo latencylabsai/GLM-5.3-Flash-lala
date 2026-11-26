@@ -28,6 +28,7 @@ class SparkDefaultsTests(unittest.TestCase):
                 host="127.0.0.1",
                 port=8000,
                 max_tokens=4096,
+                recurrent_cache_mb=1024,
             )
             with (
                 patch("platform.system", return_value="Linux"),
@@ -47,6 +48,7 @@ class SparkDefaultsTests(unittest.TestCase):
         self.assertEqual(config["draft_model"]["hybrid_draft_tokens"], 0)
         self.assertTrue(config["model"]["vision"])
         self.assertEqual(config["model"]["max_seq_len"], 262144)
+        self.assertEqual(config["memory"]["sysmem_recurrent_cache"], 1024)
         self.assertIn("glm_lala.spark_server", command)
         self.assertNotIn("docker", command)
         self.assertEqual(config["network"]["host"], "127.0.0.1")

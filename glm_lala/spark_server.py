@@ -18,6 +18,24 @@ def configure_decode():
     )
 
 
+def prefault_checkpoint_buffers():
+    """Touch each new recurrent checkpoint buffer on the CPU first."""
+    # On GB10, a GPU copy into untouched pageable memory ran at 0.1 GB/s
+    # next to the loaded model. Touched buffers copy at about 50 GB/s.
+    from exllamav3.cache import recurrent
+
+    take = recurrent.HostPool.take
+
+    def take_touched(self, shape, dtype):
+        allocated = self.allocated
+        buffer = take(self, shape, dtype)
+        if self.allocated != allocated:
+            buffer.zero_()
+        return buffer
+
+    recurrent.HostPool.take = take_touched
+
+
 def main():
     """Run TabbyAPI in the pinned Spark runtime."""
     configure_decode()
@@ -33,6 +51,7 @@ def main():
     if __version__ != "1.6.2":
         raise RuntimeError(f"Expected validated ExLlamaV3 1.6.2, got {__version__}")
     print("Lala decode policy v1: consistent small-row kernels, FP32 recurrent state, FP16 KV.", flush=True)
+    prefault_checkpoint_buffers()
     mixedk.SUPPORTED_VERSION = "1.6.2"
     if not mixedk.install(unified=False, decode="coop", prefill="grouped"):
         raise RuntimeError("Native mixed-K installation failed.")

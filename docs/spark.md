@@ -15,6 +15,12 @@ Native MTP and vision are enabled by default, with one active stream and
 262,144-token context capacity. The local API uses model ID `lala` at
 `http://127.0.0.1:8000`. Configure TabbyAPI authentication before sharing it.
 
+The server keeps up to 1,024 MiB of recurrent-state checkpoints, one at each
+2,048-token boundary. A request that starts with a cached prompt prefix, for
+example a follow-up chat turn, does not prefill that prefix again. Each
+checkpoint costs about 80 ms. Pass `--recurrent-cache-mb 0` to turn off prefix
+reuse.
+
 ## Validate
 
 With no other model server using the GPU, run:
